@@ -1,0 +1,518 @@
+{
+  "schema_version": "1.1.0",
+  "note": "Complete B1, L1 and L2 route-photo bindings. Each binding links a direction-specific hallway or turn photo to the exact directed graph edge(s) it represents. B1 Lenskart ↔ Art Friend remains intentionally unbound because no confirmed photo was supplied for that short segment.",
+  "bindings": [
+    {
+      "id": "binding_b1_cw_hallway_a",
+      "asset_id": "asset_b1_cw_hallway_a",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_15_clockwise",
+        "edge_b1_01_clockwise",
+        "edge_b1_02_clockwise"
+      ],
+      "caption": "Continue clockwise from Smiggle past Tinsel Rack and iStudio towards Taiwan Noodle and Dumpling."
+    },
+    {
+      "id": "binding_b1_cw_turn_a",
+      "asset_id": "asset_b1_cw_turn_a",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_03_clockwise"
+      ],
+      "caption": "Continue clockwise from Taiwan Noodle and Dumpling towards Burger King."
+    },
+    {
+      "id": "binding_b1_cw_hallway_b",
+      "asset_id": "asset_b1_cw_hallway_b",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_04_clockwise"
+      ],
+      "caption": "Continue clockwise from Burger King towards Lenskart."
+    },
+    {
+      "id": "binding_b1_cw_turn_b",
+      "asset_id": "asset_b1_cw_turn_b",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_06_clockwise"
+      ],
+      "caption": "Continue clockwise from Art Friend towards Supergurl."
+    },
+    {
+      "id": "binding_b1_cw_hallway_c",
+      "asset_id": "asset_b1_cw_hallway_c",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_07_clockwise",
+        "edge_b1_08_clockwise",
+        "edge_b1_09_clockwise",
+        "edge_b1_10_clockwise",
+        "edge_b1_11_clockwise"
+      ],
+      "caption": "Continue clockwise from Supergurl past DMK, Neonmello, Fash Mob and Love & Bravery towards KFC."
+    },
+    {
+      "id": "binding_b1_cw_turn_c",
+      "asset_id": "asset_b1_cw_turn_c",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_12_clockwise"
+      ],
+      "caption": "Continue clockwise from KFC towards McDonald's."
+    },
+    {
+      "id": "binding_b1_cw_hallway_d",
+      "asset_id": "asset_b1_cw_hallway_d",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_13_clockwise"
+      ],
+      "caption": "Continue clockwise from McDonald's towards DBS."
+    },
+    {
+      "id": "binding_b1_cw_turn_d",
+      "asset_id": "asset_b1_cw_turn_d",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_b1_14_clockwise"
+      ],
+      "caption": "Continue clockwise from DBS towards Smiggle."
+    },
+    {
+      "id": "binding_b1_acw_turn_d",
+      "asset_id": "asset_b1_acw_turn_d",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_14_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Smiggle towards DBS."
+    },
+    {
+      "id": "binding_b1_acw_hallway_d",
+      "asset_id": "asset_b1_acw_hallway_d",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_13_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from DBS towards McDonald's."
+    },
+    {
+      "id": "binding_b1_acw_turn_c",
+      "asset_id": "asset_b1_acw_turn_c",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_12_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from McDonald's towards KFC."
+    },
+    {
+      "id": "binding_b1_acw_hallway_c",
+      "asset_id": "asset_b1_acw_hallway_c",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_11_counterclockwise",
+        "edge_b1_10_counterclockwise",
+        "edge_b1_09_counterclockwise",
+        "edge_b1_08_counterclockwise",
+        "edge_b1_07_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from KFC past Love & Bravery, Fash Mob, Neonmello and DMK towards Supergurl."
+    },
+    {
+      "id": "binding_b1_acw_turn_b",
+      "asset_id": "asset_b1_acw_turn_b",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_06_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Supergurl towards Art Friend."
+    },
+    {
+      "id": "binding_b1_acw_hallway_b",
+      "asset_id": "asset_b1_acw_hallway_b",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_04_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Lenskart towards Burger King."
+    },
+    {
+      "id": "binding_b1_acw_turn_a",
+      "asset_id": "asset_b1_acw_turn_a",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_03_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Burger King towards Taiwan Noodle and Dumpling."
+    },
+    {
+      "id": "binding_b1_acw_hallway_a",
+      "asset_id": "asset_b1_acw_hallway_a",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_b1_02_counterclockwise",
+        "edge_b1_01_counterclockwise",
+        "edge_b1_15_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Taiwan Noodle and Dumpling past iStudio and Tinsel Rack towards Smiggle."
+    },
+    {
+      "id": "binding_l1_cw_hallway_a",
+      "asset_id": "asset_l1_cw_hallway_a",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_13_clockwise",
+        "edge_l1_01_clockwise",
+        "edge_l1_02_clockwise",
+        "edge_l1_03_clockwise"
+      ],
+      "caption": "Continue clockwise from The Body Shop past Pedro, Levi's and Determinant towards G2000."
+    },
+    {
+      "id": "binding_l1_cw_turn_a",
+      "asset_id": "asset_l1_cw_turn_a",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_04_clockwise",
+        "edge_l1_05_clockwise",
+        "edge_l1_06_clockwise"
+      ],
+      "caption": "Continue clockwise from G2000 past ECCO and Benjamin Barker towards MUJI."
+    },
+    {
+      "id": "binding_l1_cw_hallway_b",
+      "asset_id": "asset_l1_cw_hallway_b",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_07_clockwise"
+      ],
+      "caption": "Continue along the MUJI frontage towards Tiong Bahru Bakery."
+    },
+    {
+      "id": "binding_l1_cw_turn_b",
+      "asset_id": "asset_l1_cw_turn_b",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_07_clockwise"
+      ],
+      "caption": "At the end of MUJI, continue clockwise towards Tiong Bahru Bakery."
+    },
+    {
+      "id": "binding_l1_cw_hallway_c",
+      "asset_id": "asset_l1_cw_hallway_c",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_08_clockwise",
+        "edge_l1_09_clockwise",
+        "edge_l1_10_clockwise"
+      ],
+      "caption": "Continue clockwise from Tiong Bahru Bakery past ALDO and Ray-Ban towards Goldheart."
+    },
+    {
+      "id": "binding_l1_cw_turn_c",
+      "asset_id": "asset_l1_cw_turn_c",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_11_clockwise"
+      ],
+      "caption": "Continue clockwise from Goldheart towards Five Guys."
+    },
+    {
+      "id": "binding_l1_cw_hallway_d",
+      "asset_id": "asset_l1_cw_hallway_d",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_12_clockwise"
+      ],
+      "caption": "Continue clockwise from Five Guys towards The Body Shop."
+    },
+    {
+      "id": "binding_l1_cw_turn_d",
+      "asset_id": "asset_l1_cw_turn_d",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l1_12_clockwise"
+      ],
+      "caption": "Continue around the turn towards The Body Shop."
+    },
+    {
+      "id": "binding_l1_acw_turn_d",
+      "asset_id": "asset_l1_acw_turn_d",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_12_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from The Body Shop towards Five Guys."
+    },
+    {
+      "id": "binding_l1_acw_hallway_d",
+      "asset_id": "asset_l1_acw_hallway_d",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_12_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise towards Five Guys."
+    },
+    {
+      "id": "binding_l1_acw_turn_c",
+      "asset_id": "asset_l1_acw_turn_c",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_11_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Five Guys towards Goldheart."
+    },
+    {
+      "id": "binding_l1_acw_hallway_c",
+      "asset_id": "asset_l1_acw_hallway_c",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_10_counterclockwise",
+        "edge_l1_09_counterclockwise",
+        "edge_l1_08_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Goldheart past Ray-Ban and ALDO towards Tiong Bahru Bakery."
+    },
+    {
+      "id": "binding_l1_acw_turn_b",
+      "asset_id": "asset_l1_acw_turn_b",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_07_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Tiong Bahru Bakery towards MUJI."
+    },
+    {
+      "id": "binding_l1_acw_hallway_b",
+      "asset_id": "asset_l1_acw_hallway_b",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_07_counterclockwise"
+      ],
+      "caption": "Continue along the MUJI frontage."
+    },
+    {
+      "id": "binding_l1_acw_turn_a",
+      "asset_id": "asset_l1_acw_turn_a",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_06_counterclockwise",
+        "edge_l1_05_counterclockwise",
+        "edge_l1_04_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from MUJI past Benjamin Barker and ECCO towards G2000."
+    },
+    {
+      "id": "binding_l1_acw_hallway_a",
+      "asset_id": "asset_l1_acw_hallway_a",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l1_03_counterclockwise",
+        "edge_l1_02_counterclockwise",
+        "edge_l1_01_counterclockwise",
+        "edge_l1_13_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from G2000 past Determinant, Levi's and Pedro towards The Body Shop."
+    },
+    {
+      "id": "binding_l2_cw_hallway_a",
+      "asset_id": "asset_l2_cw_hallway_a",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_01_clockwise",
+        "edge_l2_02_clockwise"
+      ],
+      "caption": "Continue clockwise from ASICS past Setirom towards ANTA."
+    },
+    {
+      "id": "binding_l2_cw_turn_a",
+      "asset_id": "asset_l2_cw_turn_a",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_03_clockwise"
+      ],
+      "caption": "Continue clockwise from ANTA towards UNIQLO."
+    },
+    {
+      "id": "binding_l2_cw_hallway_b",
+      "asset_id": "asset_l2_cw_hallway_b",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_04_clockwise"
+      ],
+      "caption": "Continue along the UNIQLO frontage towards Meilleur Moment."
+    },
+    {
+      "id": "binding_l2_cw_turn_b",
+      "asset_id": "asset_l2_cw_turn_b",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_04_clockwise"
+      ],
+      "caption": "At the end of UNIQLO, continue clockwise towards Meilleur Moment."
+    },
+    {
+      "id": "binding_l2_cw_hallway_c",
+      "asset_id": "asset_l2_cw_hallway_c",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_05_clockwise",
+        "edge_l2_06_clockwise",
+        "edge_l2_07_clockwise"
+      ],
+      "caption": "Continue clockwise from Meilleur Moment past Charles & Keith and Spectacle Hut towards TYPO."
+    },
+    {
+      "id": "binding_l2_cw_turn_c",
+      "asset_id": "asset_l2_cw_turn_c",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_08_clockwise"
+      ],
+      "caption": "Continue clockwise from TYPO towards Din Tai Fung."
+    },
+    {
+      "id": "binding_l2_cw_hallway_d",
+      "asset_id": "asset_l2_cw_hallway_d",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_09_clockwise"
+      ],
+      "caption": "Continue clockwise from Din Tai Fung towards Seorae."
+    },
+    {
+      "id": "binding_l2_cw_turn_d",
+      "asset_id": "asset_l2_cw_turn_d",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "edge_ids": [
+        "edge_l2_10_clockwise"
+      ],
+      "caption": "Continue around the turn from Seorae towards ASICS."
+    },
+    {
+      "id": "binding_l2_acw_turn_d",
+      "asset_id": "asset_l2_acw_turn_d",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_10_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from ASICS towards Seorae."
+    },
+    {
+      "id": "binding_l2_acw_hallway_d",
+      "asset_id": "asset_l2_acw_hallway_d",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_09_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Seorae towards Din Tai Fung."
+    },
+    {
+      "id": "binding_l2_acw_turn_c",
+      "asset_id": "asset_l2_acw_turn_c",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_08_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Din Tai Fung towards TYPO."
+    },
+    {
+      "id": "binding_l2_acw_hallway_c",
+      "asset_id": "asset_l2_acw_hallway_c",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_07_counterclockwise",
+        "edge_l2_06_counterclockwise",
+        "edge_l2_05_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from TYPO past Spectacle Hut and Charles & Keith towards Meilleur Moment."
+    },
+    {
+      "id": "binding_l2_acw_turn_b",
+      "asset_id": "asset_l2_acw_turn_b",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_04_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from Meilleur Moment towards UNIQLO."
+    },
+    {
+      "id": "binding_l2_acw_hallway_b",
+      "asset_id": "asset_l2_acw_hallway_b",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_04_counterclockwise"
+      ],
+      "caption": "Continue along the UNIQLO frontage."
+    },
+    {
+      "id": "binding_l2_acw_turn_a",
+      "asset_id": "asset_l2_acw_turn_a",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_03_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from UNIQLO towards ANTA."
+    },
+    {
+      "id": "binding_l2_acw_hallway_a",
+      "asset_id": "asset_l2_acw_hallway_a",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "edge_ids": [
+        "edge_l2_02_counterclockwise",
+        "edge_l2_01_counterclockwise"
+      ],
+      "caption": "Continue counter-clockwise from ANTA past Setirom towards ASICS."
+    }
+  ]
+}

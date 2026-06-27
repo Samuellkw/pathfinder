@@ -5,7 +5,7 @@ import assetsData from "@/data/assets.json";
 import edgesData from "@/data/edges.json";
 import nodesData from "@/data/nodes.json";
 import placesData from "@/data/places.json";
-import routeSequencesData from "@/data/route_sequences.json";
+import routeMediaBindingsData from "@/data/route_media_bindings.json";
 import verticalConnectorsData from "@/data/vertical_connectors.json";
 import {
   AssetRecord,
@@ -15,7 +15,7 @@ import {
   Place,
   RouteResult,
   RouteStep,
-  RouteSequence,
+  RouteMediaBinding,
   buildConnectorPathMap,
   buildMapById,
   buildRouteSteps,
@@ -43,7 +43,9 @@ const places = placesData as Place[];
 const edges = (edgesData as { edges: Edge[] }).edges;
 const nodes = (nodesData as { nodes: NodeRecord[] }).nodes;
 const assets = (assetsData as { assets: AssetRecord[] }).assets;
-const routeSequences = (routeSequencesData as { sequences: RouteSequence[] }).sequences;
+const routeMediaBindings = (
+  routeMediaBindingsData as { bindings: RouteMediaBinding[] }
+).bindings;
 const connectorGroups = (verticalConnectorsData as { connector_groups: ConnectorGroup[] })
   .connector_groups;
 
@@ -62,7 +64,7 @@ export default function Home() {
       nodeById: buildMapById(nodes),
       assetById: buildMapById(assets),
       connectorPathById: buildConnectorPathMap(connectorGroups),
-      sequences: routeSequences
+      routeMediaBindings
     };
   }, []);
 
