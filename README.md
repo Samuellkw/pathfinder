@@ -14,3 +14,7 @@ The vision panel sends an uploaded storefront/corridor image to a server-side Op
 ## Concierge
 
 The concierge extracts the user's time, budget and interests with OpenAI, then chooses stops from `data/store_profiles.json`. Route legs are still generated locally from the directed graph, so the model cannot make up indoor directions. See `docs/EXA_NEXT_STEP.md` for the safe next step for optional fresh promotions/events.
+
+## Exa live mall context
+
+The concierge optionally uses Exa to search official Plaza Singapura/CapitaLand pages for current promotions, events and tenant updates. It never replaces the local directed graph for routing. Add `EXA_API_KEY` to `.env.local`; see `docs/EXA_INTEGRATION.md`.
