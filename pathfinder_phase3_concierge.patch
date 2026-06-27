@@ -1,0 +1,636 @@
+From 9ad7d914a9df8015b2701b00be1f989fa721d9ad Mon Sep 17 00:00:00 2001
+From: Builder <builder@example.com>
+Date: Sat, 27 Jun 2026 06:48:00 +0000
+Subject: [PATCH] phase 3 concierge planner
+
+---
+ README.md                     |   4 +
+ app/api/concierge/route.ts    |  80 ++++++++++++++++
+ app/globals.css               |  70 ++++++++++++++
+ app/page.tsx                  |   3 +
+ components/ConciergePanel.tsx | 110 ++++++++++++++++++++++
+ data/store_profiles.json      | 108 ++++++++++++++++++++++
+ docs/EXA_NEXT_STEP.md         |   7 ++
+ lib/concierge.ts              | 166 ++++++++++++++++++++++++++++++++++
+ 8 files changed, 548 insertions(+)
+ create mode 100644 app/api/concierge/route.ts
+ create mode 100644 components/ConciergePanel.tsx
+ create mode 100644 data/store_profiles.json
+ create mode 100644 docs/EXA_NEXT_STEP.md
+ create mode 100644 lib/concierge.ts
+
+diff --git a/README.md b/README.md
+index 58beab4..42c11b5 100644
+--- a/README.md
++++ b/README.md
+@@ -10,3 +10,7 @@ The chat endpoint parses a natural-language route request with OpenAI, then reso
+ ## Vision-assisted landmark confirmation
+ 
+ The vision panel sends an uploaded storefront/corridor image to a server-side OpenAI endpoint. It returns up to three likely **mapped** stores and asks the user to confirm one before routing. It deliberately does not claim indoor GPS accuracy.
++
++## Concierge
++
++The concierge extracts the user's time, budget and interests with OpenAI, then chooses stops from `data/store_profiles.json`. Route legs are still generated locally from the directed graph, so the model cannot make up indoor directions. See `docs/EXA_NEXT_STEP.md` for the safe next step for optional fresh promotions/events.
+diff --git a/app/api/concierge/route.ts b/app/api/concierge/route.ts
+new file mode 100644
+index 0000000..5ae6bc6
+--- /dev/null
++++ b/app/api/concierge/route.ts
+@@ -0,0 +1,80 @@
++import { NextResponse } from "next/server";
++import { buildConciergePlan, ConciergeConstraints } from "@/lib/concierge";
++import { createStructuredResponse } from "@/lib/openai-server";
++
++export const runtime = "nodejs";
++
++const conciergeSchema = {
++  type: "object",
++  additionalProperties: false,
++  required: [
++    "duration_minutes",
++    "budget_sgd",
++    "party",
++    "interests",
++    "needs_shopping",
++    "needs_meal",
++    "needs_dessert",
++    "start_query",
++    "reply"
++  ],
++  properties: {
++    duration_minutes: { type: "integer", minimum: 0, maximum: 600 },
++    budget_sgd: { type: "integer", minimum: 0, maximum: 1000 },
++    party: { type: "string" },
++    interests: { type: "array", items: { type: "string" }, maxItems: 8 },
++    needs_shopping: { type: "boolean" },
++    needs_meal: { type: "boolean" },
++    needs_dessert: { type: "boolean" },
++    start_query: { type: "string" },
++    reply: { type: "string" }
++  }
++};
++
++type ConciergeIntent = ConciergeConstraints & { reply: string };
++
++export async function POST(request: Request) {
++  try {
++    const body = (await request.json()) as { message?: string };
++    const message = body.message?.trim();
++
++    if (!message || message.length > 900) {
++      return NextResponse.json(
++        { status: "error", message: "Describe your mall plan in 1 to 900 characters." },
++        { status: 400 }
++      );
++    }
++
++    const intent = await createStructuredResponse<ConciergeIntent>({
++      schemaName: "plaza_concierge_intent",
++      schema: conciergeSchema,
++      instructions: [
++        "You extract preferences for a Plaza Singapura B1–L2 mall concierge pilot.",
++        "Return only the requested JSON schema.",
++        "Use 0 for an unknown budget or duration.",
++        "Infer shopping, meal and dessert needs only when the user asks for them or clearly implies them.",
++        "Use party = 'date' when the user mentions a girlfriend, boyfriend, partner, date or couple.",
++        "Do not claim live promotions, opening hours, queues or availability."
++      ].join("\n"),
++      input: message,
++      maxOutputTokens: 360
++    });
++
++    const itinerary = buildConciergePlan(intent);
++
++    return NextResponse.json({
++      status: "ready",
++      message: intent.reply || "Here is a route-aware plan using the mapped pilot stores.",
++      constraints: intent,
++      itinerary,
++      liveContext: {
++        enabled: false,
++        message: "Optional Exa live-search context can be added after Exa Dashboard Onboarding."
++      }
++    });
++  } catch (error) {
++    const message = error instanceof Error ? error.message : "Unable to build that plan.";
++    const status = message.includes("OPENAI_API_KEY") ? 503 : 500;
++    return NextResponse.json({ status: "error", message }, { status });
++  }
++}
+diff --git a/app/globals.css b/app/globals.css
+index 44d70e4..53ca795 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -447,3 +447,73 @@ h1 {
+   color: var(--muted);
+   font-size: 0.84rem;
+ }
++
++.concierge-result {
++  padding-bottom: 16px;
++}
++
++.plan-summary {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 8px;
++  padding: 0 16px 12px;
++}
++
++.plan-summary span {
++  border: 1px solid rgba(13, 124, 102, 0.2);
++  border-radius: 999px;
++  padding: 7px 10px;
++  color: var(--accent-dark);
++  background: rgba(13, 124, 102, 0.08);
++  font-size: 0.82rem;
++  font-weight: 800;
++}
++
++.plan-list {
++  display: grid;
++  gap: 10px;
++  margin: 0;
++  padding: 0 16px;
++  list-style: none;
++}
++
++.plan-list li {
++  display: grid;
++  grid-template-columns: 30px minmax(0, 1fr);
++  gap: 10px;
++  border: 1px solid var(--line);
++  border-radius: 8px;
++  padding: 12px;
++  background: var(--surface-strong);
++}
++
++.plan-list li > span {
++  display: grid;
++  width: 28px;
++  height: 28px;
++  place-items: center;
++  border-radius: 999px;
++  color: #ffffff;
++  background: var(--accent);
++  font-size: 0.82rem;
++  font-weight: 900;
++}
++
++.plan-list strong {
++  display: block;
++  margin-bottom: 4px;
++}
++
++.plan-list p {
++  margin: 0 0 5px;
++  color: var(--muted);
++  font-size: 0.9rem;
++  line-height: 1.4;
++}
++
++.live-context-note {
++  margin: 12px 16px 0;
++  color: var(--muted);
++  font-size: 0.82rem;
++  line-height: 1.4;
++}
+diff --git a/app/page.tsx b/app/page.tsx
+index 2d61a57..1146d61 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -3,6 +3,7 @@
+ import { FormEvent, useMemo, useState } from "react";
+ import { RouteChat } from "@/components/RouteChat";
+ import { VisionAssist } from "@/components/VisionAssist";
++import { ConciergePanel } from "@/components/ConciergePanel";
+ import assetsData from "@/data/assets.json";
+ import edgesData from "@/data/edges.json";
+ import nodesData from "@/data/nodes.json";
+@@ -197,6 +198,8 @@ export default function Home() {
+ 
+       <VisionAssist onConfirmedLocation={handleVisionConfirmed} />
+ 
++      <ConciergePanel />
++
+       {selectedImages.length > 0 ? (
+         <section className="photo-strip" aria-label="Selected landmark photos">
+           {selectedImages.map((image, index) => (
+diff --git a/components/ConciergePanel.tsx b/components/ConciergePanel.tsx
+new file mode 100644
+index 0000000..ec1d029
+--- /dev/null
++++ b/components/ConciergePanel.tsx
+@@ -0,0 +1,110 @@
++"use client";
++
++import { FormEvent, useState } from "react";
++
++type Stop = {
++  node_id: string;
++  name: string;
++  floor: string;
++  category: string;
++  duration_minutes: number;
++  estimated_spend_sgd: number;
++  reason: string;
++};
++
++type ConciergeResponse =
++  | {
++      status: "ready";
++      message: string;
++      itinerary: {
++        stops: Stop[];
++        estimated_total_minutes: number;
++        estimated_total_spend_sgd: number;
++        fits_duration: boolean;
++        fits_budget: boolean;
++      };
++      liveContext: { enabled: boolean; message: string };
++    }
++  | { status: "error"; message: string };
++
++export function ConciergePanel() {
++  const [message, setMessage] = useState("");
++  const [response, setResponse] = useState<ConciergeResponse | null>(null);
++  const [isLoading, setIsLoading] = useState(false);
++
++  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
++    event.preventDefault();
++    if (!message.trim()) return;
++
++    setIsLoading(true);
++    setResponse(null);
++
++    try {
++      const apiResponse = await fetch("/api/concierge", {
++        method: "POST",
++        headers: { "Content-Type": "application/json" },
++        body: JSON.stringify({ message })
++      });
++      setResponse((await apiResponse.json()) as ConciergeResponse);
++    } catch {
++      setResponse({ status: "error", message: "The concierge is unavailable right now." });
++    } finally {
++      setIsLoading(false);
++    }
++  }
++
++  return (
++    <section className="ai-panel" aria-labelledby="concierge-title">
++      <div className="panel-heading">
++        <div>
++          <p className="eyebrow">OpenAI concierge</p>
++          <h2 id="concierge-title">Plan a Plaza Sing outing</h2>
++        </div>
++        <span>Plan</span>
++      </div>
++
++      <form className="ai-form" onSubmit={handleSubmit}>
++        <label className="select-field" htmlFor="concierge-message">
++          <span>Tell us your time, budget and vibe</span>
++          <textarea
++            id="concierge-message"
++            value={message}
++            onChange={(event) => setMessage(event.target.value)}
++            maxLength={900}
++            placeholder="I’m going to Plaza Sing with my girlfriend. We have 3 hours and $100 for dinner, dessert and casual shopping."
++          />
++        </label>
++        <button className="primary-button" type="submit" disabled={isLoading}>
++          {isLoading ? "Planning…" : "Build my plan"}
++        </button>
++      </form>
++
++      {response?.status === "error" ? <p className="ai-response">{response.message}</p> : null}
++
++      {response?.status === "ready" ? (
++        <div className="concierge-result">
++          <p className="ai-response">{response.message}</p>
++          <div className="plan-summary">
++            <span>~{response.itinerary.estimated_total_minutes} min</span>
++            <span>~S${response.itinerary.estimated_total_spend_sgd}</span>
++          </div>
++          <ol className="plan-list">
++            {response.itinerary.stops.map((stop, index) => (
++              <li key={stop.node_id}>
++                <span>{index + 1}</span>
++                <div>
++                  <strong>{stop.name}</strong>
++                  <p>
++                    {stop.floor} · ~{stop.duration_minutes} min · ~S${stop.estimated_spend_sgd}
++                  </p>
++                  <p>{stop.reason}</p>
++                </div>
++              </li>
++            ))}
++          </ol>
++          <p className="live-context-note">{response.liveContext.message}</p>
++        </div>
++      ) : null}
++    </section>
++  );
++}
+diff --git a/data/store_profiles.json b/data/store_profiles.json
+new file mode 100644
+index 0000000..d0c3670
+--- /dev/null
++++ b/data/store_profiles.json
+@@ -0,0 +1,108 @@
++{
++  "profiles": [
++    {
++      "node_id": "l2_charles-and-keith",
++      "category": "shopping",
++      "tags": ["date", "fashion", "accessories", "gifts", "womenswear"],
++      "duration_minutes": 30,
++      "estimated_spend_sgd": 55,
++      "price_level": 2
++    },
++    {
++      "node_id": "l1_aldo",
++      "category": "shopping",
++      "tags": ["date", "fashion", "shoes", "accessories", "gifts"],
++      "duration_minutes": 25,
++      "estimated_spend_sgd": 65,
++      "price_level": 2
++    },
++    {
++      "node_id": "l2_uniqlo",
++      "category": "shopping",
++      "tags": ["fashion", "casual", "menswear", "womenswear", "basics"],
++      "duration_minutes": 30,
++      "estimated_spend_sgd": 45,
++      "price_level": 2
++    },
++    {
++      "node_id": "l1_muji",
++      "category": "shopping",
++      "tags": ["date", "gifts", "home", "stationery", "lifestyle"],
++      "duration_minutes": 35,
++      "estimated_spend_sgd": 35,
++      "price_level": 2
++    },
++    {
++      "node_id": "l2_asics",
++      "category": "shopping",
++      "tags": ["running", "shoes", "sports", "fitness"],
++      "duration_minutes": 25,
++      "estimated_spend_sgd": 110,
++      "price_level": 3
++    },
++    {
++      "node_id": "l2_anta",
++      "category": "shopping",
++      "tags": ["running", "shoes", "sports", "fitness"],
++      "duration_minutes": 25,
++      "estimated_spend_sgd": 85,
++      "price_level": 2
++    },
++    {
++      "node_id": "b1_art-friend",
++      "category": "shopping",
++      "tags": ["gifts", "crafts", "creative", "date", "stationery"],
++      "duration_minutes": 30,
++      "estimated_spend_sgd": 25,
++      "price_level": 1
++    },
++    {
++      "node_id": "l2_din-tai-fung",
++      "category": "meal",
++      "tags": ["date", "dinner", "lunch", "sit-down", "asian"],
++      "duration_minutes": 60,
++      "estimated_spend_sgd": 35,
++      "price_level": 2
++    },
++    {
++      "node_id": "l2_seorae",
++      "category": "meal",
++      "tags": ["date", "dinner", "korean", "sit-down", "grill"],
++      "duration_minutes": 75,
++      "estimated_spend_sgd": 45,
++      "price_level": 3
++    },
++    {
++      "node_id": "l1_five-guys",
++      "category": "meal",
++      "tags": ["casual", "quick", "burger", "date", "lunch"],
++      "duration_minutes": 40,
++      "estimated_spend_sgd": 25,
++      "price_level": 2
++    },
++    {
++      "node_id": "b1_taiwan-noodle-and-dumpling",
++      "category": "meal",
++      "tags": ["casual", "quick", "asian", "budget", "lunch"],
++      "duration_minutes": 40,
++      "estimated_spend_sgd": 16,
++      "price_level": 1
++    },
++    {
++      "node_id": "l1_tiong-bahru-bakery",
++      "category": "dessert",
++      "tags": ["date", "bakery", "coffee", "dessert", "brunch"],
++      "duration_minutes": 35,
++      "estimated_spend_sgd": 18,
++      "price_level": 2
++    },
++    {
++      "node_id": "b1_smiggle",
++      "category": "shopping",
++      "tags": ["gifts", "stationery", "fun", "budget"],
++      "duration_minutes": 20,
++      "estimated_spend_sgd": 18,
++      "price_level": 1
++    }
++  ]
++}
+diff --git a/docs/EXA_NEXT_STEP.md b/docs/EXA_NEXT_STEP.md
+new file mode 100644
+index 0000000..40a0bc0
+--- /dev/null
++++ b/docs/EXA_NEXT_STEP.md
+@@ -0,0 +1,7 @@
++# Optional Exa live context
++
++The concierge currently plans from the team-curated `data/store_profiles.json` and the local route graph. That makes its routes deterministic and demo-safe.
++
++Use Exa only for **fresh information** such as official Plaza Sing promotions, events or temporary tenant updates. Do not use Exa for indoor routing.
++
++Before adding Exa, use the Exa Dashboard Onboarding flow to generate the current tested integration snippet for this exact Next.js project and add it as a server-only API route. Then pass its returned sources into the concierge response under a clearly labelled **Live context** section.
+diff --git a/lib/concierge.ts b/lib/concierge.ts
+new file mode 100644
+index 0000000..0ea914c
+--- /dev/null
++++ b/lib/concierge.ts
+@@ -0,0 +1,166 @@
++import profilesData from "@/data/store_profiles.json";
++import { RouteResult, RouteStep } from "@/lib/navigation";
++import {
++  buildRouteForStores,
++  getStoreById,
++  resolveStore
++} from "@/lib/mall-runtime";
++
++export type StoreProfile = {
++  node_id: string;
++  category: "shopping" | "meal" | "dessert";
++  tags: string[];
++  duration_minutes: number;
++  estimated_spend_sgd: number;
++  price_level: number;
++};
++
++export type ConciergeConstraints = {
++  duration_minutes: number;
++  budget_sgd: number;
++  party: string;
++  interests: string[];
++  needs_shopping: boolean;
++  needs_meal: boolean;
++  needs_dessert: boolean;
++  start_query: string;
++};
++
++export type ItineraryStop = {
++  node_id: string;
++  name: string;
++  floor: string;
++  category: StoreProfile["category"];
++  duration_minutes: number;
++  estimated_spend_sgd: number;
++  reason: string;
++};
++
++export type ItinerarySegment = {
++  from_node_id: string;
++  to_node_id: string;
++  route: RouteResult;
++  steps: RouteStep[];
++  estimated_walk_minutes: number;
++};
++
++const profiles = (profilesData as { profiles: StoreProfile[] }).profiles;
++
++function normaliseTag(value: string) {
++  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
++}
++
++function hasInterest(profile: StoreProfile, interests: string[]) {
++  const tags = profile.tags.map(normaliseTag);
++  return interests.some((interest) => {
++    const normalized = normaliseTag(interest);
++    return tags.some((tag) => tag.includes(normalized) || normalized.includes(tag));
++  });
++}
++
++function scoreProfile(profile: StoreProfile, constraints: ConciergeConstraints, usedIds: Set<string>) {
++  if (usedIds.has(profile.node_id)) {
++    return Number.NEGATIVE_INFINITY;
++  }
++
++  let score = 0;
++  if (hasInterest(profile, constraints.interests)) score += 12;
++  if (constraints.party.toLowerCase().includes("date") && profile.tags.includes("date")) score += 8;
++  if (constraints.budget_sgd > 0 && profile.estimated_spend_sgd <= constraints.budget_sgd) score += 3;
++  if (constraints.budget_sgd > 0 && profile.estimated_spend_sgd > constraints.budget_sgd) score -= 6;
++  return score;
++}
++
++function chooseStop(
++  category: StoreProfile["category"],
++  constraints: ConciergeConstraints,
++  usedIds: Set<string>
++) {
++  const profile = profiles
++    .filter((item) => item.category === category)
++    .sort((a, b) => scoreProfile(b, constraints, usedIds) - scoreProfile(a, constraints, usedIds))[0];
++
++  if (!profile) return undefined;
++  const store = getStoreById(profile.node_id);
++  if (!store) return undefined;
++
++  usedIds.add(profile.node_id);
++  const matchingTags = profile.tags.filter((tag) => hasInterest({ ...profile, tags: [tag] }, constraints.interests));
++  const reason = matchingTags.length
++    ? `Matches your ${matchingTags.join(", ")} preference${matchingTags.length === 1 ? "" : "s"}.`
++    : profile.tags.includes("date") && constraints.party.toLowerCase().includes("date")
++      ? "A date-friendly stop in the mapped pilot zone."
++      : "A practical fit for your available time.";
++
++  return {
++    node_id: store.id,
++    name: store.name,
++    floor: store.floor_display ?? store.floor_id,
++    category,
++    duration_minutes: profile.duration_minutes,
++    estimated_spend_sgd: profile.estimated_spend_sgd,
++    reason
++  } satisfies ItineraryStop;
++}
++
++export function buildConciergePlan(constraints: ConciergeConstraints) {
++  const usedIds = new Set<string>();
++  const stops: ItineraryStop[] = [];
++
++  const wantsShopping = constraints.needs_shopping || constraints.interests.some((item) =>
++    ["fashion", "shopping", "gift", "gifts", "shoes", "running", "sports", "stationery"].includes(normaliseTag(item))
++  );
++  const wantsMeal = constraints.needs_meal || constraints.party.toLowerCase().includes("date");
++  const wantsDessert = constraints.needs_dessert || constraints.party.toLowerCase().includes("date");
++
++  if (wantsShopping) {
++    const shopping = chooseStop("shopping", constraints, usedIds);
++    if (shopping) stops.push(shopping);
++  }
++  if (wantsMeal) {
++    const meal = chooseStop("meal", constraints, usedIds);
++    if (meal) stops.push(meal);
++  }
++  if (wantsDessert) {
++    const dessert = chooseStop("dessert", constraints, usedIds);
++    if (dessert) stops.push(dessert);
++  }
++
++  if (stops.length === 0) {
++    const fallback = chooseStop("shopping", constraints, usedIds);
++    if (fallback) stops.push(fallback);
++  }
++
++  const startStore = resolveStore(constraints.start_query).store;
++  const routeNodeIds = startStore ? [startStore.id, ...stops.map((stop) => stop.node_id)] : stops.map((stop) => stop.node_id);
++  const segments: ItinerarySegment[] = [];
++
++  for (let index = 0; index < routeNodeIds.length - 1; index += 1) {
++    const navigation = buildRouteForStores(routeNodeIds[index], routeNodeIds[index + 1]);
++    if (!navigation) continue;
++
++    segments.push({
++      from_node_id: routeNodeIds[index],
++      to_node_id: routeNodeIds[index + 1],
++      route: navigation.route,
++      steps: navigation.steps,
++      estimated_walk_minutes: Math.max(2, Math.ceil(navigation.route.edges.length * 1.2))
++    });
++  }
++
++  const activityMinutes = stops.reduce((sum, stop) => sum + stop.duration_minutes, 0);
++  const walkingMinutes = segments.reduce((sum, segment) => sum + segment.estimated_walk_minutes, 0);
++  const estimatedSpend = stops.reduce((sum, stop) => sum + stop.estimated_spend_sgd, 0);
++
++  return {
++    start: startStore
++      ? { id: startStore.id, name: startStore.name, floor: startStore.floor_display ?? startStore.floor_id }
++      : null,
++    stops,
++    segments,
++    estimated_total_minutes: activityMinutes + walkingMinutes,
++    estimated_total_spend_sgd: estimatedSpend,
++    fits_duration: constraints.duration_minutes <= 0 || activityMinutes + walkingMinutes <= constraints.duration_minutes,
++    fits_budget: constraints.budget_sgd <= 0 || estimatedSpend <= constraints.budget_sgd
++  };
++}
+-- 
+2.47.3
+

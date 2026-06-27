@@ -1,6 +1,9 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { RouteChat } from "@/components/RouteChat";
+import { VisionAssist } from "@/components/VisionAssist";
+import { ConciergePanel } from "@/components/ConciergePanel";
 import assetsData from "@/data/assets.json";
 import edgesData from "@/data/edges.json";
 import nodesData from "@/data/nodes.json";
@@ -24,6 +27,15 @@ import {
   getNodeImages,
   getStorePlaces
 } from "@/lib/navigation";
+
+type ChatReadyResponse = {
+  status: "ready";
+  message: string;
+  start: { id: string };
+  destination: { id: string };
+  route: RouteResult;
+  steps: RouteStep[];
+};
 
 type PlannerResult =
   | {
@@ -91,6 +103,46 @@ export default function Home() {
     }))
   ];
 
+  function applyRoute(start: string, destination: string, route: RouteResult, steps: RouteStep[]) {
+    setStartId(start);
+    setDestinationId(destination);
+    setResult({
+      status: route.edges.length === 0 ? "same" : "ready",
+      route,
+      steps
+    });
+  }
+
+  function handleChatRoute(response: ChatReadyResponse) {
+    applyRoute(response.start.id, response.destination.id, response.route, response.steps);
+  }
+
+  async function handleVisionConfirmed(input: {
+    role: "current" | "destination";
+    storeId: string;
+    message: string;
+  }) {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
+        input.role === "current"
+          ? { message: input.message, startOverrideId: input.storeId }
+          : { message: input.message, destinationOverrideId: input.storeId }
+      )
+    });
+
+    const payload = (await response.json()) as
+      | ChatReadyResponse
+      | { status: "error" | "needs_clarification"; message: string };
+
+    if (!response.ok || payload.status !== "ready") {
+      throw new Error(payload.message ?? "Unable to create a route from that landmark.");
+    }
+
+    handleChatRoute(payload);
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -103,11 +155,7 @@ export default function Home() {
       return;
     }
 
-    setResult({
-      status: route.edges.length === 0 ? "same" : "ready",
-      route,
-      steps: buildRouteSteps(route, context)
-    });
+    applyRoute(startId, destinationId, route, buildRouteSteps(route, context));
   }
 
   return (
@@ -145,6 +193,12 @@ export default function Home() {
           </button>
         </form>
       </section>
+
+      <RouteChat onRouteReady={handleChatRoute} />
+
+      <VisionAssist onConfirmedLocation={handleVisionConfirmed} />
+
+      <ConciergePanel />
 
       {selectedImages.length > 0 ? (
         <section className="photo-strip" aria-label="Selected landmark photos">

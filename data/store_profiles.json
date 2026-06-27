@@ -1,0 +1,108 @@
+{
+  "profiles": [
+    {
+      "node_id": "l2_charles-and-keith",
+      "category": "shopping",
+      "tags": ["date", "fashion", "accessories", "gifts", "womenswear"],
+      "duration_minutes": 30,
+      "estimated_spend_sgd": 55,
+      "price_level": 2
+    },
+    {
+      "node_id": "l1_aldo",
+      "category": "shopping",
+      "tags": ["date", "fashion", "shoes", "accessories", "gifts"],
+      "duration_minutes": 25,
+      "estimated_spend_sgd": 65,
+      "price_level": 2
+    },
+    {
+      "node_id": "l2_uniqlo",
+      "category": "shopping",
+      "tags": ["fashion", "casual", "menswear", "womenswear", "basics"],
+      "duration_minutes": 30,
+      "estimated_spend_sgd": 45,
+      "price_level": 2
+    },
+    {
+      "node_id": "l1_muji",
+      "category": "shopping",
+      "tags": ["date", "gifts", "home", "stationery", "lifestyle"],
+      "duration_minutes": 35,
+      "estimated_spend_sgd": 35,
+      "price_level": 2
+    },
+    {
+      "node_id": "l2_asics",
+      "category": "shopping",
+      "tags": ["running", "shoes", "sports", "fitness"],
+      "duration_minutes": 25,
+      "estimated_spend_sgd": 110,
+      "price_level": 3
+    },
+    {
+      "node_id": "l2_anta",
+      "category": "shopping",
+      "tags": ["running", "shoes", "sports", "fitness"],
+      "duration_minutes": 25,
+      "estimated_spend_sgd": 85,
+      "price_level": 2
+    },
+    {
+      "node_id": "b1_art-friend",
+      "category": "shopping",
+      "tags": ["gifts", "crafts", "creative", "date", "stationery"],
+      "duration_minutes": 30,
+      "estimated_spend_sgd": 25,
+      "price_level": 1
+    },
+    {
+      "node_id": "l2_din-tai-fung",
+      "category": "meal",
+      "tags": ["date", "dinner", "lunch", "sit-down", "asian"],
+      "duration_minutes": 60,
+      "estimated_spend_sgd": 35,
+      "price_level": 2
+    },
+    {
+      "node_id": "l2_seorae",
+      "category": "meal",
+      "tags": ["date", "dinner", "korean", "sit-down", "grill"],
+      "duration_minutes": 75,
+      "estimated_spend_sgd": 45,
+      "price_level": 3
+    },
+    {
+      "node_id": "l1_five-guys",
+      "category": "meal",
+      "tags": ["casual", "quick", "burger", "date", "lunch"],
+      "duration_minutes": 40,
+      "estimated_spend_sgd": 25,
+      "price_level": 2
+    },
+    {
+      "node_id": "b1_taiwan-noodle-and-dumpling",
+      "category": "meal",
+      "tags": ["casual", "quick", "asian", "budget", "lunch"],
+      "duration_minutes": 40,
+      "estimated_spend_sgd": 16,
+      "price_level": 1
+    },
+    {
+      "node_id": "l1_tiong-bahru-bakery",
+      "category": "dessert",
+      "tags": ["date", "bakery", "coffee", "dessert", "brunch"],
+      "duration_minutes": 35,
+      "estimated_spend_sgd": 18,
+      "price_level": 2
+    },
+    {
+      "node_id": "b1_smiggle",
+      "category": "shopping",
+      "tags": ["gifts", "stationery", "fun", "budget"],
+      "duration_minutes": 20,
+      "estimated_spend_sgd": 18,
+      "price_level": 1
+    }
+  ]
+}

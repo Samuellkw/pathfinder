@@ -1,0 +1,438 @@
+From 927755ad443107c692a948b50c7acd60874b6162 Mon Sep 17 00:00:00 2001
+From: Builder <builder@example.com>
+Date: Sat, 27 Jun 2026 06:46:14 +0000
+Subject: [PATCH] phase 2 vision landmark confirmation
+
+---
+ README.md                   |   4 +
+ app/api/vision/route.ts     | 103 +++++++++++++++++++++
+ app/globals.css             |  56 ++++++++++++
+ app/page.tsx                |  29 ++++++
+ components/VisionAssist.tsx | 175 ++++++++++++++++++++++++++++++++++++
+ 5 files changed, 367 insertions(+)
+ create mode 100644 app/api/vision/route.ts
+ create mode 100644 components/VisionAssist.tsx
+
+diff --git a/README.md b/README.md
+index 614bfcb..58beab4 100644
+--- a/README.md
++++ b/README.md
+@@ -6,3 +6,7 @@
+ 3. Run `npm run dev`.
+ 
+ The chat endpoint parses a natural-language route request with OpenAI, then resolves store names and computes the route **locally** from `data/edges.json`. The model is not allowed to invent indoor directions.
++
++## Vision-assisted landmark confirmation
++
++The vision panel sends an uploaded storefront/corridor image to a server-side OpenAI endpoint. It returns up to three likely **mapped** stores and asks the user to confirm one before routing. It deliberately does not claim indoor GPS accuracy.
+diff --git a/app/api/vision/route.ts b/app/api/vision/route.ts
+new file mode 100644
+index 0000000..def23fd
+--- /dev/null
++++ b/app/api/vision/route.ts
+@@ -0,0 +1,103 @@
++import { NextResponse } from "next/server";
++import { findStoreMatches, storeCatalogueForPrompt } from "@/lib/mall-runtime";
++import { createStructuredResponse } from "@/lib/openai-server";
++
++export const runtime = "nodejs";
++
++const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
++
++const visionSchema = {
++  type: "object",
++  additionalProperties: false,
++  required: ["candidate_names", "confidence", "evidence"],
++  properties: {
++    candidate_names: {
++      type: "array",
++      maxItems: 3,
++      items: { type: "string" }
++    },
++    confidence: { type: "number" },
++    evidence: { type: "string" }
++  }
++};
++
++type VisionResult = {
++  candidate_names: string[];
++  confidence: number;
++  evidence: string;
++};
++
++export async function POST(request: Request) {
++  try {
++    const formData = await request.formData();
++    const image = formData.get("image");
++
++    if (!image || typeof image === "string") {
++      return NextResponse.json({ status: "error", message: "Upload a mall photo first." }, { status: 400 });
++    }
++
++    if (!image.type.startsWith("image/")) {
++      return NextResponse.json({ status: "error", message: "Upload a JPG, PNG, WEBP or other image file." }, { status: 400 });
++    }
++
++    if (image.size > MAX_IMAGE_BYTES) {
++      return NextResponse.json(
++        { status: "error", message: "Keep the photo below 5 MB for the demo." },
++        { status: 400 }
++      );
++    }
++
++    const prompt = String(formData.get("message") ?? "").trim();
++    const base64 = Buffer.from(await image.arrayBuffer()).toString("base64");
++
++    const result = await createStructuredResponse<VisionResult>({
++      schemaName: "plaza_visual_location",
++      schema: visionSchema,
++      instructions: [
++        "You identify a likely location inside the Plaza Singapura B1–L2 pilot from a user photo.",
++        "Read visible storefront signage, logos, unit numbers and distinctive contextual clues.",
++        "Only nominate stores from the supplied catalogue. Do not invent a location.",
++        "If the image does not contain enough evidence, return an empty candidate_names array and low confidence.",
++        "This is landmark-assisted location confirmation, not GPS.",
++        `Supported store catalogue: ${JSON.stringify(storeCatalogueForPrompt())}`
++      ].join("\n"),
++      input: [
++        {
++          role: "user",
++          content: [
++            { type: "input_text", text: prompt || "Identify the likely mapped store in this photo." },
++            {
++              type: "input_image",
++              image_url: `data:${image.type};base64,${base64}`
++            }
++          ]
++        }
++      ],
++      maxOutputTokens: 360
++    });
++
++    const candidates = result.candidate_names
++      .flatMap((candidateName) => findStoreMatches(candidateName, 1))
++      .filter((match, index, items) => items.findIndex((item) => item.store.id === match.store.id) === index)
++      .slice(0, 3)
++      .map((match) => ({
++        id: match.store.id,
++        name: match.store.name,
++        floor: match.store.floor_display ?? match.store.floor_id,
++        unit: match.store.unit ?? "",
++        matchScore: match.score
++      }));
++
++    return NextResponse.json({
++      status: "ready",
++      candidates,
++      confidence: Math.max(0, Math.min(1, result.confidence)),
++      evidence: result.evidence,
++      needsConfirmation: true
++    });
++  } catch (error) {
++    const message = error instanceof Error ? error.message : "Unable to analyse that image.";
++    const status = message.includes("OPENAI_API_KEY") ? 503 : 500;
++    return NextResponse.json({ status: "error", message }, { status });
++  }
++}
+diff --git a/app/globals.css b/app/globals.css
+index 533bccc..44d70e4 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -391,3 +391,59 @@ h1 {
+   color: var(--muted);
+   line-height: 1.5;
+ }
++
++.ai-form input[type="file"],
++.ai-form input[type="text"],
++.ai-form input:not([type]) {
++  width: 100%;
++  min-height: 48px;
++  border: 1px solid var(--line);
++  border-radius: 8px;
++  padding: 10px 12px;
++  color: var(--text);
++  background: var(--surface-strong);
++  font: inherit;
++}
++
++.vision-preview {
++  display: block;
++  width: min(100%, 360px);
++  aspect-ratio: 4 / 3;
++  border: 1px solid var(--line);
++  border-radius: 8px;
++  object-fit: cover;
++  background: #e7ece8;
++}
++
++.vision-result {
++  padding-bottom: 16px;
++}
++
++.candidate-list {
++  display: grid;
++  gap: 8px;
++  padding: 0 16px;
++}
++
++.candidate-button {
++  display: grid;
++  gap: 3px;
++  width: 100%;
++  border: 1px solid var(--line);
++  border-radius: 8px;
++  padding: 12px;
++  color: var(--text);
++  background: var(--surface-strong);
++  text-align: left;
++  cursor: pointer;
++}
++
++.candidate-button:hover:not(:disabled) {
++  border-color: var(--accent);
++  background: rgba(13, 124, 102, 0.06);
++}
++
++.candidate-button span {
++  color: var(--muted);
++  font-size: 0.84rem;
++}
+diff --git a/app/page.tsx b/app/page.tsx
+index 3dd0138..2d61a57 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -2,6 +2,7 @@
+ 
+ import { FormEvent, useMemo, useState } from "react";
+ import { RouteChat } from "@/components/RouteChat";
++import { VisionAssist } from "@/components/VisionAssist";
+ import assetsData from "@/data/assets.json";
+ import edgesData from "@/data/edges.json";
+ import nodesData from "@/data/nodes.json";
+@@ -115,6 +116,32 @@ export default function Home() {
+     applyRoute(response.start.id, response.destination.id, response.route, response.steps);
+   }
+ 
++  async function handleVisionConfirmed(input: {
++    role: "current" | "destination";
++    storeId: string;
++    message: string;
++  }) {
++    const response = await fetch("/api/chat", {
++      method: "POST",
++      headers: { "Content-Type": "application/json" },
++      body: JSON.stringify(
++        input.role === "current"
++          ? { message: input.message, startOverrideId: input.storeId }
++          : { message: input.message, destinationOverrideId: input.storeId }
++      )
++    });
++
++    const payload = (await response.json()) as
++      | ChatReadyResponse
++      | { status: "error" | "needs_clarification"; message: string };
++
++    if (!response.ok || payload.status !== "ready") {
++      throw new Error(payload.message ?? "Unable to create a route from that landmark.");
++    }
++
++    handleChatRoute(payload);
++  }
++
+   function handleSubmit(event: FormEvent<HTMLFormElement>) {
+     event.preventDefault();
+ 
+@@ -168,6 +195,8 @@ export default function Home() {
+ 
+       <RouteChat onRouteReady={handleChatRoute} />
+ 
++      <VisionAssist onConfirmedLocation={handleVisionConfirmed} />
++
+       {selectedImages.length > 0 ? (
+         <section className="photo-strip" aria-label="Selected landmark photos">
+           {selectedImages.map((image, index) => (
+diff --git a/components/VisionAssist.tsx b/components/VisionAssist.tsx
+new file mode 100644
+index 0000000..ae9c5dc
+--- /dev/null
++++ b/components/VisionAssist.tsx
+@@ -0,0 +1,175 @@
++"use client";
++
++import { FormEvent, useMemo, useState } from "react";
++
++type PhotoRole = "current" | "destination";
++
++type VisionCandidate = {
++  id: string;
++  name: string;
++  floor: string;
++  unit: string;
++  matchScore: number;
++};
++
++type VisionResponse =
++  | {
++      status: "ready";
++      candidates: VisionCandidate[];
++      confidence: number;
++      evidence: string;
++      needsConfirmation: boolean;
++    }
++  | { status: "error"; message: string };
++
++type VisionAssistProps = {
++  onConfirmedLocation: (input: {
++    role: PhotoRole;
++    storeId: string;
++    message: string;
++  }) => Promise<void>;
++};
++
++export function VisionAssist({ onConfirmedLocation }: VisionAssistProps) {
++  const [role, setRole] = useState<PhotoRole>("current");
++  const [message, setMessage] = useState("");
++  const [file, setFile] = useState<File | null>(null);
++  const [previewUrl, setPreviewUrl] = useState("");
++  const [response, setResponse] = useState<VisionResponse | null>(null);
++  const [isScanning, setIsScanning] = useState(false);
++  const [isRouting, setIsRouting] = useState(false);
++
++  const helperText = useMemo(
++    () =>
++      role === "current"
++        ? "Upload where you are, then say where you want to go."
++        : "Upload your destination, then say where you are now.",
++    [role]
++  );
++
++  function handleFileChange(nextFile: File | null) {
++    setFile(nextFile);
++    setResponse(null);
++    setPreviewUrl(nextFile ? URL.createObjectURL(nextFile) : "");
++  }
++
++  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
++    event.preventDefault();
++    if (!file) {
++      setResponse({ status: "error", message: "Choose a photo first." });
++      return;
++    }
++
++    setIsScanning(true);
++    setResponse(null);
++
++    try {
++      const formData = new FormData();
++      formData.append("image", file);
++      formData.append("message", message);
++      formData.append("photoRole", role);
++
++      const apiResponse = await fetch("/api/vision", { method: "POST", body: formData });
++      const payload = (await apiResponse.json()) as VisionResponse;
++      setResponse(payload);
++    } catch {
++      setResponse({ status: "error", message: "Vision check failed. Try another image." });
++    } finally {
++      setIsScanning(false);
++    }
++  }
++
++  async function confirmCandidate(candidate: VisionCandidate) {
++    setIsRouting(true);
++    try {
++      await onConfirmedLocation({ role, storeId: candidate.id, message });
++    } finally {
++      setIsRouting(false);
++    }
++  }
++
++  return (
++    <section className="ai-panel" aria-labelledby="vision-title">
++      <div className="panel-heading">
++        <div>
++          <p className="eyebrow">OpenAI vision</p>
++          <h2 id="vision-title">Confirm a landmark from a photo</h2>
++        </div>
++        <span>Vision</span>
++      </div>
++
++      <form className="ai-form" onSubmit={handleSubmit}>
++        <label className="select-field" htmlFor="vision-role">
++          <span>What does the photo show?</span>
++          <select
++            id="vision-role"
++            value={role}
++            onChange={(event) => {
++              setRole(event.target.value as PhotoRole);
++              setResponse(null);
++            }}
++          >
++            <option value="current">My current location</option>
++            <option value="destination">My destination</option>
++          </select>
++        </label>
++
++        <label className="select-field" htmlFor="vision-image">
++          <span>Upload a storefront or corridor photo</span>
++          <input
++            id="vision-image"
++            type="file"
++            accept="image/*"
++            onChange={(event) => handleFileChange(event.target.files?.[0] ?? null)}
++          />
++        </label>
++
++        {previewUrl ? <img className="vision-preview" src={previewUrl} alt="Selected mall photo" /> : null}
++
++        <label className="select-field" htmlFor="vision-message">
++          <span>{helperText}</span>
++          <input
++            id="vision-message"
++            value={message}
++            onChange={(event) => setMessage(event.target.value)}
++            placeholder={role === "current" ? "How do I get to DBS?" : "I’m at UNIQLO."}
++            maxLength={700}
++          />
++        </label>
++
++        <button className="primary-button" type="submit" disabled={isScanning}>
++          {isScanning ? "Checking landmark…" : "Find this landmark"}
++        </button>
++      </form>
++
++      {response?.status === "error" ? <p className="ai-response">{response.message}</p> : null}
++
++      {response?.status === "ready" ? (
++        <div className="vision-result">
++          <p className="ai-response">{response.evidence || "Please confirm the closest landmark."}</p>
++          {response.candidates.length > 0 ? (
++            <div className="candidate-list">
++              {response.candidates.map((candidate) => (
++                <button
++                  className="candidate-button"
++                  key={candidate.id}
++                  type="button"
++                  disabled={isRouting}
++                  onClick={() => confirmCandidate(candidate)}
++                >
++                  <strong>{candidate.name}</strong>
++                  <span>
++                    {candidate.floor}
++                    {candidate.unit ? ` · ${candidate.unit}` : ""}
++                  </span>
++                </button>
++              ))}
++            </div>
++          ) : (
++            <p className="ai-response">No confident match. Try a clearer photo with a sign or storefront in frame.</p>
++          )}
++        </div>
++      ) : null}
++    </section>
++  );
++}
+-- 
+2.47.3
+
