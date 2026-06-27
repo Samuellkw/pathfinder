@@ -1,0 +1,351 @@
+diff --git a/app/page.tsx b/app/page.tsx
+index e8958ba..397b37a 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -5,7 +5,7 @@ import assetsData from "@/data/assets.json";
+ import edgesData from "@/data/edges.json";
+ import nodesData from "@/data/nodes.json";
+ import placesData from "@/data/places.json";
+-import routeSequencesData from "@/data/route_sequences.json";
++import routeMediaBindingsData from "@/data/route_media_bindings.json";
+ import verticalConnectorsData from "@/data/vertical_connectors.json";
+ import {
+   AssetRecord,
+@@ -15,7 +15,7 @@ import {
+   Place,
+   RouteResult,
+   RouteStep,
+-  RouteSequence,
++  RouteMediaBinding,
+   buildConnectorPathMap,
+   buildMapById,
+   buildRouteSteps,
+@@ -43,7 +43,9 @@ const places = placesData as Place[];
+ const edges = (edgesData as { edges: Edge[] }).edges;
+ const nodes = (nodesData as { nodes: NodeRecord[] }).nodes;
+ const assets = (assetsData as { assets: AssetRecord[] }).assets;
+-const routeSequences = (routeSequencesData as { sequences: RouteSequence[] }).sequences;
++const routeMediaBindings = (
++  routeMediaBindingsData as { bindings: RouteMediaBinding[] }
++).bindings;
+ const connectorGroups = (verticalConnectorsData as { connector_groups: ConnectorGroup[] })
+   .connector_groups;
+ 
+@@ -62,7 +64,7 @@ export default function Home() {
+       nodeById: buildMapById(nodes),
+       assetById: buildMapById(assets),
+       connectorPathById: buildConnectorPathMap(connectorGroups),
+-      sequences: routeSequences
++      routeMediaBindings
+     };
+   }, []);
+ 
+diff --git a/lib/navigation.ts b/lib/navigation.ts
+index dc4d31f..a6b71ce 100644
+--- a/lib/navigation.ts
++++ b/lib/navigation.ts
+@@ -54,10 +54,13 @@ export type AssetRecord = {
+   status?: string;
+ };
+ 
+-export type RouteSequence = {
++export type RouteMediaBinding = {
++  id?: string;
++  asset_id: string;
+   floor_id: FloorId;
+-  clockwise_asset_ids?: string[];
+-  counterclockwise_asset_ids?: string[];
++  direction: "clockwise" | "counterclockwise";
++  edge_ids: string[];
++  caption?: string;
+ };
+ 
+ export type ConnectorPath = {
+@@ -113,7 +116,7 @@ export type RouteBuildContext = {
+   nodeById: Map<string, NodeRecord>;
+   assetById: Map<string, AssetRecord>;
+   connectorPathById: Map<string, ConnectorPathView>;
+-  sequences: RouteSequence[];
++  routeMediaBindings: RouteMediaBinding[];
+ };
+ 
+ const FLOOR_ORDER = new Map([
+@@ -350,11 +353,7 @@ function buildWalkStep(edges: Edge[], context: RouteBuildContext): RouteStep {
+     meta: `${floorLabel(firstEdge.floor_id ?? from.floor_id)} - ${edges.length} segment${
+       edges.length === 1 ? "" : "s"
+     }`,
+-    images: getRouteSequenceImages(
+-      firstEdge.floor_id ?? from.floor_id,
+-      firstEdge.direction,
+-      context
+-    )
++    images: getWalkImages(edges, context)
+   };
+ }
+ 
+@@ -408,30 +407,60 @@ function buildConnectorStep(edge: Edge, context: RouteBuildContext): RouteStep {
+   };
+ }
+ 
+-function getRouteSequenceImages(
+-  floorId: FloorId | null | undefined,
+-  direction: string | undefined,
+-  context: RouteBuildContext
+-) {
+-  if (!floorId || (direction !== "clockwise" && direction !== "counterclockwise")) {
++function getWalkImages(walkEdges: Edge[], context: RouteBuildContext): ImageCard[] {
++  const firstEdge = walkEdges[0];
++
++  if (!firstEdge?.floor_id) {
+     return [];
+   }
+ 
+-  const sequence = context.sequences.find((item) => item.floor_id === floorId);
+-  const assetIds =
+-    direction === "clockwise"
+-      ? sequence?.clockwise_asset_ids
+-      : sequence?.counterclockwise_asset_ids;
++  if (
++    firstEdge.direction !== "clockwise" &&
++    firstEdge.direction !== "counterclockwise"
++  ) {
++    return [];
++  }
+ 
+-  return (assetIds ?? [])
+-    .slice(0, 2)
+-    .map((assetId) => context.assetById.get(assetId))
+-    .filter((asset): asset is AssetRecord => Boolean(asset?.web_path))
+-    .map((asset) => ({
+-      src: asset.web_path as string,
+-      title: `${floorLabel(floorId)} ${directionLabel(direction)}`,
+-      caption: asset.step_type ? `${capitalize(asset.step_type)} reference` : "Route reference"
+-    }));
++  const routePositionByEdgeId = new Map(
++    walkEdges.map((edge, index) => [edge.id, index] as const)
++  );
++  const matchedImages: Array<{ routePosition: number; image: ImageCard }> = [];
++
++  for (const binding of context.routeMediaBindings) {
++    if (
++      binding.floor_id !== firstEdge.floor_id ||
++      binding.direction !== firstEdge.direction
++    ) {
++      continue;
++    }
++
++    const matchingPositions = binding.edge_ids
++      .map((edgeId) => routePositionByEdgeId.get(edgeId))
++      .filter((position): position is number => position !== undefined);
++
++    if (matchingPositions.length === 0) {
++      continue;
++    }
++
++    const asset = context.assetById.get(binding.asset_id);
++    if (!asset?.web_path) {
++      continue;
++    }
++
++    matchedImages.push({
++      routePosition: Math.min(...matchingPositions),
++      image: {
++        src: asset.web_path,
++        title: `${floorLabel(firstEdge.floor_id)} ${directionLabel(firstEdge.direction)}`,
++        caption: binding.caption ?? "Follow this corridor."
++      }
++    });
++  }
++
++  return matchedImages
++    .sort((a, b) => a.routePosition - b.routePosition)
++    .slice(0, 4)
++    .map((item) => item.image);
+ }
+ 
+ export function getNodeImages(
+diff --git a/data/route_media_bindings.json b/data/route_media_bindings.json
+new file mode 100644
+index 0000000..5ebfb78
+--- /dev/null
++++ b/data/route_media_bindings.json
+@@ -0,0 +1,178 @@
++{
++  "schema_version": "1.0.0",
++  "note": "B1 only. Bindings are based on the team-confirmed clockwise segments. Counter-clockwise entries are their exact reverse, supported by the explicit confirmation that ACW Turn D is Smiggle → DBS and ACW Hallway D is DBS → McDonald's.",
++  "bindings": [
++    {
++      "id": "binding_b1_cw_hallway_a",
++      "asset_id": "asset_b1_cw_hallway_a",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_15_clockwise",
++        "edge_b1_01_clockwise",
++        "edge_b1_02_clockwise"
++      ],
++      "caption": "Continue clockwise from Smiggle past Tinsel Rack and iStudio towards Taiwan Noodle and Dumpling."
++    },
++    {
++      "id": "binding_b1_cw_turn_a",
++      "asset_id": "asset_b1_cw_turn_a",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_03_clockwise"
++      ],
++      "caption": "Continue clockwise from Taiwan Noodle and Dumpling towards Burger King."
++    },
++    {
++      "id": "binding_b1_cw_hallway_b",
++      "asset_id": "asset_b1_cw_hallway_b",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_04_clockwise"
++      ],
++      "caption": "Continue clockwise from Burger King towards Lenskart."
++    },
++    {
++      "id": "binding_b1_cw_turn_b",
++      "asset_id": "asset_b1_cw_turn_b",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_06_clockwise"
++      ],
++      "caption": "Continue clockwise from Art Friend towards Supergurl."
++    },
++    {
++      "id": "binding_b1_cw_hallway_c",
++      "asset_id": "asset_b1_cw_hallway_c",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_07_clockwise",
++        "edge_b1_08_clockwise",
++        "edge_b1_09_clockwise",
++        "edge_b1_10_clockwise",
++        "edge_b1_11_clockwise"
++      ],
++      "caption": "Continue clockwise from Supergurl past DMK, Neonmello, Fash Mob and Love & Bravery towards KFC."
++    },
++    {
++      "id": "binding_b1_cw_turn_c",
++      "asset_id": "asset_b1_cw_turn_c",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_12_clockwise"
++      ],
++      "caption": "Continue clockwise from KFC towards McDonald's."
++    },
++    {
++      "id": "binding_b1_cw_hallway_d",
++      "asset_id": "asset_b1_cw_hallway_d",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_13_clockwise"
++      ],
++      "caption": "Continue clockwise from McDonald's towards DBS."
++    },
++    {
++      "id": "binding_b1_cw_turn_d",
++      "asset_id": "asset_b1_cw_turn_d",
++      "floor_id": "b1",
++      "direction": "clockwise",
++      "edge_ids": [
++        "edge_b1_14_clockwise"
++      ],
++      "caption": "Continue clockwise from DBS towards Smiggle."
++    },
++    {
++      "id": "binding_b1_acw_turn_d",
++      "asset_id": "asset_b1_acw_turn_d",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_14_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from Smiggle towards DBS."
++    },
++    {
++      "id": "binding_b1_acw_hallway_d",
++      "asset_id": "asset_b1_acw_hallway_d",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_13_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from DBS towards McDonald's."
++    },
++    {
++      "id": "binding_b1_acw_turn_c",
++      "asset_id": "asset_b1_acw_turn_c",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_12_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from McDonald's towards KFC."
++    },
++    {
++      "id": "binding_b1_acw_hallway_c",
++      "asset_id": "asset_b1_acw_hallway_c",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_11_counterclockwise",
++        "edge_b1_10_counterclockwise",
++        "edge_b1_09_counterclockwise",
++        "edge_b1_08_counterclockwise",
++        "edge_b1_07_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from KFC past Love & Bravery, Fash Mob, Neonmello and DMK towards Supergurl."
++    },
++    {
++      "id": "binding_b1_acw_turn_b",
++      "asset_id": "asset_b1_acw_turn_b",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_06_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from Supergurl towards Art Friend."
++    },
++    {
++      "id": "binding_b1_acw_hallway_b",
++      "asset_id": "asset_b1_acw_hallway_b",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_04_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from Lenskart towards Burger King."
++    },
++    {
++      "id": "binding_b1_acw_turn_a",
++      "asset_id": "asset_b1_acw_turn_a",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_03_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from Burger King towards Taiwan Noodle and Dumpling."
++    },
++    {
++      "id": "binding_b1_acw_hallway_a",
++      "asset_id": "asset_b1_acw_hallway_a",
++      "floor_id": "b1",
++      "direction": "counterclockwise",
++      "edge_ids": [
++        "edge_b1_02_counterclockwise",
++        "edge_b1_01_counterclockwise",
++        "edge_b1_15_counterclockwise"
++      ],
++      "caption": "Continue counter-clockwise from Taiwan Noodle and Dumpling past iStudio and Tinsel Rack towards Smiggle."
++    }
++  ]
++}
+\ No newline at end of file

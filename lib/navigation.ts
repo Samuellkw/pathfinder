@@ -54,10 +54,13 @@ export type AssetRecord = {
   status?: string;
 };
 
-export type RouteSequence = {
+export type RouteMediaBinding = {
+  id?: string;
+  asset_id: string;
   floor_id: FloorId;
-  clockwise_asset_ids?: string[];
-  counterclockwise_asset_ids?: string[];
+  direction: "clockwise" | "counterclockwise";
+  edge_ids: string[];
+  caption?: string;
 };
 
 export type ConnectorPath = {
@@ -113,7 +116,7 @@ export type RouteBuildContext = {
   nodeById: Map<string, NodeRecord>;
   assetById: Map<string, AssetRecord>;
   connectorPathById: Map<string, ConnectorPathView>;
-  sequences: RouteSequence[];
+  routeMediaBindings: RouteMediaBinding[];
 };
 
 const FLOOR_ORDER = new Map([
@@ -350,11 +353,7 @@ function buildWalkStep(edges: Edge[], context: RouteBuildContext): RouteStep {
     meta: `${floorLabel(firstEdge.floor_id ?? from.floor_id)} - ${edges.length} segment${
       edges.length === 1 ? "" : "s"
     }`,
-    images: getRouteSequenceImages(
-      firstEdge.floor_id ?? from.floor_id,
-      firstEdge.direction,
-      context
-    )
+    images: getWalkImages(edges, context)
   };
 }
 
@@ -408,30 +407,60 @@ function buildConnectorStep(edge: Edge, context: RouteBuildContext): RouteStep {
   };
 }
 
-function getRouteSequenceImages(
-  floorId: FloorId | null | undefined,
-  direction: string | undefined,
-  context: RouteBuildContext
-) {
-  if (!floorId || (direction !== "clockwise" && direction !== "counterclockwise")) {
+function getWalkImages(walkEdges: Edge[], context: RouteBuildContext): ImageCard[] {
+  const firstEdge = walkEdges[0];
+
+  if (!firstEdge?.floor_id) {
     return [];
   }
 
-  const sequence = context.sequences.find((item) => item.floor_id === floorId);
-  const assetIds =
-    direction === "clockwise"
-      ? sequence?.clockwise_asset_ids
-      : sequence?.counterclockwise_asset_ids;
+  if (
+    firstEdge.direction !== "clockwise" &&
+    firstEdge.direction !== "counterclockwise"
+  ) {
+    return [];
+  }
 
-  return (assetIds ?? [])
-    .slice(0, 2)
-    .map((assetId) => context.assetById.get(assetId))
-    .filter((asset): asset is AssetRecord => Boolean(asset?.web_path))
-    .map((asset) => ({
-      src: asset.web_path as string,
-      title: `${floorLabel(floorId)} ${directionLabel(direction)}`,
-      caption: asset.step_type ? `${capitalize(asset.step_type)} reference` : "Route reference"
-    }));
+  const routePositionByEdgeId = new Map(
+    walkEdges.map((edge, index) => [edge.id, index] as const)
+  );
+  const matchedImages: Array<{ routePosition: number; image: ImageCard }> = [];
+
+  for (const binding of context.routeMediaBindings) {
+    if (
+      binding.floor_id !== firstEdge.floor_id ||
+      binding.direction !== firstEdge.direction
+    ) {
+      continue;
+    }
+
+    const matchingPositions = binding.edge_ids
+      .map((edgeId) => routePositionByEdgeId.get(edgeId))
+      .filter((position): position is number => position !== undefined);
+
+    if (matchingPositions.length === 0) {
+      continue;
+    }
+
+    const asset = context.assetById.get(binding.asset_id);
+    if (!asset?.web_path) {
+      continue;
+    }
+
+    matchedImages.push({
+      routePosition: Math.min(...matchingPositions),
+      image: {
+        src: asset.web_path,
+        title: `${floorLabel(firstEdge.floor_id)} ${directionLabel(firstEdge.direction)}`,
+        caption: binding.caption ?? "Follow this corridor."
+      }
+    });
+  }
+
+  return matchedImages
+    .sort((a, b) => a.routePosition - b.routePosition)
+    .slice(0, 4)
+    .map((item) => item.image);
 }
 
 export function getNodeImages(
