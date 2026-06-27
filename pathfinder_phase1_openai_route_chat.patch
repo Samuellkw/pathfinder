@@ -1,0 +1,647 @@
+From 292072b723976a3a1b30548eccaf964e402e11bb Mon Sep 17 00:00:00 2001
+From: Builder <builder@example.com>
+Date: Sat, 27 Jun 2026 06:43:43 +0000
+Subject: [PATCH] phase 1 openai route chatbot
+
+---
+ .env.example             |   4 +
+ README.md                |   9 ++-
+ app/api/chat/route.ts    | 148 ++++++++++++++++++++++++++++++++++++
+ app/globals.css          |  44 +++++++++++
+ app/page.tsx             |  32 ++++++--
+ components/RouteChat.tsx |  90 ++++++++++++++++++++++
+ lib/mall-runtime.ts      | 157 +++++++++++++++++++++++++++++++++++++++
+ lib/openai-server.ts     |  56 ++++++++++++++
+ 8 files changed, 534 insertions(+), 6 deletions(-)
+ create mode 100644 .env.example
+ create mode 100644 app/api/chat/route.ts
+ create mode 100644 components/RouteChat.tsx
+ create mode 100644 lib/mall-runtime.ts
+ create mode 100644 lib/openai-server.ts
+
+diff --git a/.env.example b/.env.example
+new file mode 100644
+index 0000000..04acdb5
+--- /dev/null
++++ b/.env.example
+@@ -0,0 +1,4 @@
++# Keep this file safe. Never put real keys in a committed .env file.
++OPENAI_API_KEY=your_openai_api_key_here
++# Optional. Defaults to gpt-5.5 in this project.
++OPENAI_MODEL=gpt-5.5
+diff --git a/README.md b/README.md
+index a8a76da..614bfcb 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,8 @@
+-# pathfinder
+\ No newline at end of file
++# pathfinder
++## OpenAI route chatbot
++
++1. Run `npm install openai`.
++2. Copy `.env.example` to `.env.local` and set `OPENAI_API_KEY`.
++3. Run `npm run dev`.
++
++The chat endpoint parses a natural-language route request with OpenAI, then resolves store names and computes the route **locally** from `data/edges.json`. The model is not allowed to invent indoor directions.
+diff --git a/app/api/chat/route.ts b/app/api/chat/route.ts
+new file mode 100644
+index 0000000..58e6360
+--- /dev/null
++++ b/app/api/chat/route.ts
+@@ -0,0 +1,148 @@
++import { NextResponse } from "next/server";
++import {
++  buildRouteForStores,
++  getStoreById,
++  resolveStore,
++  storeCatalogueForPrompt
++} from "@/lib/mall-runtime";
++import { createStructuredResponse } from "@/lib/openai-server";
++
++export const runtime = "nodejs";
++
++const navigationSchema = {
++  type: "object",
++  additionalProperties: false,
++  required: ["intent", "start_query", "destination_query", "reply"],
++  properties: {
++    intent: {
++      type: "string",
++      enum: ["navigation", "clarification", "unsupported"]
++    },
++    start_query: { type: "string" },
++    destination_query: { type: "string" },
++    reply: { type: "string" }
++  }
++};
++
++type NavigationIntent = {
++  intent: "navigation" | "clarification" | "unsupported";
++  start_query: string;
++  destination_query: string;
++  reply: string;
++};
++
++type ChatRequest = {
++  message?: string;
++  startOverrideId?: string;
++  destinationOverrideId?: string;
++};
++
++function formatMatches(query: string, matches: ReturnType<typeof resolveStore>["matches"]) {
++  const options = matches
++    .map((match) => `${match.store.name} (${match.store.floor_display ?? match.store.floor_id})`)
++    .join(", ");
++
++  return options
++    ? `I could not confidently match “${query}”. Did you mean ${options}?`
++    : `I could not find “${query}” in the mapped B1–L2 pilot zone.`;
++}
++
++export async function POST(request: Request) {
++  try {
++    const body = (await request.json()) as ChatRequest;
++    const message = body.message?.trim();
++
++    if (!message || message.length > 700) {
++      return NextResponse.json(
++        { status: "error", message: "Send a route question between 1 and 700 characters." },
++        { status: 400 }
++      );
++    }
++
++    const startOverride = getStoreById(body.startOverrideId);
++    const destinationOverride = getStoreById(body.destinationOverrideId);
++
++    if (body.startOverrideId && !startOverride) {
++      return NextResponse.json({ status: "error", message: "Unknown start override." }, { status: 400 });
++    }
++
++    if (body.destinationOverrideId && !destinationOverride) {
++      return NextResponse.json(
++        { status: "error", message: "Unknown destination override." },
++        { status: 400 }
++      );
++    }
++
++    const intent = await createStructuredResponse<NavigationIntent>({
++      schemaName: "plaza_navigation_intent",
++      schema: navigationSchema,
++      instructions: [
++        "You extract indoor navigation intent for a Plaza Singapura B1–L2 pilot.",
++        "Return only the requested JSON schema.",
++        "Identify a start location and destination from the user message.",
++        "When the user says ‘here’, use the known current location if provided.",
++        "When the user says ‘this place’, use the known destination if provided.",
++        "Do not invent stores outside the supplied catalogue.",
++        "If one location is missing, use intent clarification and leave that field empty.",
++        `Known current location: ${startOverride?.name ?? "none"}.`,
++        `Known destination: ${destinationOverride?.name ?? "none"}.`,
++        `Supported store catalogue: ${JSON.stringify(storeCatalogueForPrompt())}`
++      ].join("\n"),
++      input: message,
++      maxOutputTokens: 320
++    });
++
++    const startResolution = startOverride
++      ? { store: startOverride, matches: [] }
++      : resolveStore(intent.start_query);
++    const destinationResolution = destinationOverride
++      ? { store: destinationOverride, matches: [] }
++      : resolveStore(intent.destination_query);
++
++    if (!startResolution.store || !destinationResolution.store) {
++      const parts = [];
++      if (!startResolution.store) {
++        parts.push(formatMatches(intent.start_query || "your current location", startResolution.matches));
++      }
++      if (!destinationResolution.store) {
++        parts.push(
++          formatMatches(intent.destination_query || "your destination", destinationResolution.matches)
++        );
++      }
++
++      return NextResponse.json({
++        status: "needs_clarification",
++        message: parts.join(" "),
++        startCandidates: startResolution.matches.map((match) => match.store),
++        destinationCandidates: destinationResolution.matches.map((match) => match.store)
++      });
++    }
++
++    const navigation = buildRouteForStores(
++      startResolution.store.id,
++      destinationResolution.store.id
++    );
++
++    if (!navigation) {
++      return NextResponse.json({
++        status: "error",
++        message: "No route was found in the current directed graph."
++      });
++    }
++
++    return NextResponse.json({
++      status: "ready",
++      message:
++        intent.reply ||
++        `I found a route from ${startResolution.store.name} to ${destinationResolution.store.name}.`,
++      start: startResolution.store,
++      destination: destinationResolution.store,
++      ...navigation
++    });
++  } catch (error) {
++    const message = error instanceof Error ? error.message : "Unable to plan that route.";
++    const status = message.includes("OPENAI_API_KEY") ? 503 : 500;
++
++    return NextResponse.json({ status: "error", message }, { status });
++  }
++}
+diff --git a/app/globals.css b/app/globals.css
+index 9726951..533bccc 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -347,3 +347,47 @@ h1 {
+     flex-basis: 236px;
+   }
+ }
++
++.ai-panel {
++  margin-top: 18px;
++  border: 1px solid rgba(13, 124, 102, 0.3);
++  border-radius: 8px;
++  background: rgba(255, 254, 250, 0.94);
++  box-shadow: var(--shadow);
++}
++
++.ai-form {
++  display: grid;
++  gap: 14px;
++  padding: 16px;
++}
++
++.ai-form textarea {
++  width: 100%;
++  min-height: 94px;
++  resize: vertical;
++  border: 1px solid var(--line);
++  border-radius: 8px;
++  padding: 12px;
++  color: var(--text);
++  background: var(--surface-strong);
++  font: inherit;
++  line-height: 1.45;
++}
++
++.ai-form textarea:focus {
++  outline: 3px solid rgba(13, 124, 102, 0.22);
++  outline-offset: 2px;
++}
++
++.primary-button:disabled {
++  cursor: wait;
++  opacity: 0.66;
++}
++
++.ai-response {
++  margin: 0;
++  padding: 0 16px 16px;
++  color: var(--muted);
++  line-height: 1.5;
++}
+diff --git a/app/page.tsx b/app/page.tsx
+index 397b37a..3dd0138 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -1,6 +1,7 @@
+ "use client";
+ 
+ import { FormEvent, useMemo, useState } from "react";
++import { RouteChat } from "@/components/RouteChat";
+ import assetsData from "@/data/assets.json";
+ import edgesData from "@/data/edges.json";
+ import nodesData from "@/data/nodes.json";
+@@ -25,6 +26,15 @@ import {
+   getStorePlaces
+ } from "@/lib/navigation";
+ 
++type ChatReadyResponse = {
++  status: "ready";
++  message: string;
++  start: { id: string };
++  destination: { id: string };
++  route: RouteResult;
++  steps: RouteStep[];
++};
++
+ type PlannerResult =
+   | {
+       status: "idle";
+@@ -91,6 +101,20 @@ export default function Home() {
+     }))
+   ];
+ 
++  function applyRoute(start: string, destination: string, route: RouteResult, steps: RouteStep[]) {
++    setStartId(start);
++    setDestinationId(destination);
++    setResult({
++      status: route.edges.length === 0 ? "same" : "ready",
++      route,
++      steps
++    });
++  }
++
++  function handleChatRoute(response: ChatReadyResponse) {
++    applyRoute(response.start.id, response.destination.id, response.route, response.steps);
++  }
++
+   function handleSubmit(event: FormEvent<HTMLFormElement>) {
+     event.preventDefault();
+ 
+@@ -103,11 +127,7 @@ export default function Home() {
+       return;
+     }
+ 
+-    setResult({
+-      status: route.edges.length === 0 ? "same" : "ready",
+-      route,
+-      steps: buildRouteSteps(route, context)
+-    });
++    applyRoute(startId, destinationId, route, buildRouteSteps(route, context));
+   }
+ 
+   return (
+@@ -146,6 +166,8 @@ export default function Home() {
+         </form>
+       </section>
+ 
++      <RouteChat onRouteReady={handleChatRoute} />
++
+       {selectedImages.length > 0 ? (
+         <section className="photo-strip" aria-label="Selected landmark photos">
+           {selectedImages.map((image, index) => (
+diff --git a/components/RouteChat.tsx b/components/RouteChat.tsx
+new file mode 100644
+index 0000000..663ffe2
+--- /dev/null
++++ b/components/RouteChat.tsx
+@@ -0,0 +1,90 @@
++"use client";
++
++import { FormEvent, useState } from "react";
++import { RouteResult, RouteStep } from "@/lib/navigation";
++
++type ReadyResponse = {
++  status: "ready";
++  message: string;
++  start: { id: string };
++  destination: { id: string };
++  route: RouteResult;
++  steps: RouteStep[];
++};
++
++type ChatResponse =
++  | ReadyResponse
++  | { status: "needs_clarification" | "error"; message: string };
++
++type RouteChatProps = {
++  onRouteReady: (response: ReadyResponse) => void;
++};
++
++export function RouteChat({ onRouteReady }: RouteChatProps) {
++  const [message, setMessage] = useState("");
++  const [responseMessage, setResponseMessage] = useState("");
++  const [isLoading, setIsLoading] = useState(false);
++
++  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
++    event.preventDefault();
++
++    const trimmedMessage = message.trim();
++    if (!trimmedMessage) {
++      return;
++    }
++
++    setIsLoading(true);
++    setResponseMessage("");
++
++    try {
++      const response = await fetch("/api/chat", {
++        method: "POST",
++        headers: { "Content-Type": "application/json" },
++        body: JSON.stringify({ message: trimmedMessage })
++      });
++      const payload = (await response.json()) as ChatResponse;
++
++      if (!response.ok || payload.status !== "ready") {
++        setResponseMessage(payload.message ?? "I could not understand that route request.");
++        return;
++      }
++
++      setResponseMessage(payload.message);
++      onRouteReady(payload);
++    } catch {
++      setResponseMessage("The AI route assistant is unavailable right now. Try the dropdown planner.");
++    } finally {
++      setIsLoading(false);
++    }
++  }
++
++  return (
++    <section className="ai-panel" aria-labelledby="ask-pathfinder-title">
++      <div className="panel-heading">
++        <div>
++          <p className="eyebrow">OpenAI route assistant</p>
++          <h2 id="ask-pathfinder-title">Ask PathFinder</h2>
++        </div>
++        <span>AI</span>
++      </div>
++
++      <form className="ai-form" onSubmit={handleSubmit}>
++        <label className="select-field" htmlFor="route-chat-message">
++          <span>Ask in your own words</span>
++          <textarea
++            id="route-chat-message"
++            value={message}
++            onChange={(event) => setMessage(event.target.value)}
++            maxLength={700}
++            placeholder="I’m at UNIQLO. How do I get to DBS?"
++          />
++        </label>
++        <button className="primary-button" type="submit" disabled={isLoading}>
++          {isLoading ? "Planning…" : "Ask PathFinder"}
++        </button>
++      </form>
++
++      {responseMessage ? <p className="ai-response">{responseMessage}</p> : null}
++    </section>
++  );
++}
+diff --git a/lib/mall-runtime.ts b/lib/mall-runtime.ts
+new file mode 100644
+index 0000000..4424473
+--- /dev/null
++++ b/lib/mall-runtime.ts
+@@ -0,0 +1,157 @@
++import assetsData from "@/data/assets.json";
++import edgesData from "@/data/edges.json";
++import nodesData from "@/data/nodes.json";
++import placesData from "@/data/places.json";
++import routeMediaBindingsData from "@/data/route_media_bindings.json";
++import verticalConnectorsData from "@/data/vertical_connectors.json";
++import {
++  AssetRecord,
++  ConnectorGroup,
++  Edge,
++  NodeRecord,
++  Place,
++  RouteMediaBinding,
++  buildConnectorPathMap,
++  buildMapById,
++  buildRouteSteps,
++  findShortestRoute,
++  getStorePlaces
++} from "@/lib/navigation";
++
++export const places = placesData as Place[];
++export const edges = (edgesData as { edges: Edge[] }).edges;
++export const nodes = (nodesData as { nodes: NodeRecord[] }).nodes;
++export const assets = (assetsData as { assets: AssetRecord[] }).assets;
++export const routeMediaBindings = (
++  routeMediaBindingsData as { bindings: RouteMediaBinding[] }
++).bindings;
++export const connectorGroups = (
++  verticalConnectorsData as { connector_groups: ConnectorGroup[] }
++).connector_groups;
++export const stores = getStorePlaces(places);
++
++export const routeContext = {
++  placeById: buildMapById(places),
++  nodeById: buildMapById(nodes),
++  assetById: buildMapById(assets),
++  connectorPathById: buildConnectorPathMap(connectorGroups),
++  routeMediaBindings
++};
++
++export type StoreMatch = {
++  store: Place;
++  score: number;
++};
++
++const STORE_ALIASES: Record<string, string> = {
++  "body shop": "the body shop",
++  bodyshop: "the body shop",
++  "ray ban": "ray-ban",
++  rayban: "ray-ban",
++  "charles and keith": "charles & keith",
++  "charles keith": "charles & keith",
++  "c and k": "charles & keith",
++  "love n bravery": "love & bravery",
++  "love and bravery": "love & bravery",
++  "tbb": "tiong bahru bakery",
++  "macs": "mcdonalds",
++  "mcdonald's": "mcdonalds",
++  "taiwan noodles": "taiwan noodle and dumpling",
++  "din tai fung": "din tai fung"
++};
++
++export function normaliseStoreText(value: string) {
++  const normalized = value
++    .toLowerCase()
++    .replace(/&/g, " and ")
++    .replace(/[’']/g, "")
++    .replace(/[^a-z0-9]+/g, " ")
++    .trim()
++    .replace(/\s+/g, " ");
++
++  return STORE_ALIASES[normalized] ?? normalized;
++}
++
++function tokenOverlapScore(query: string, name: string) {
++  const queryTokens = new Set(query.split(" ").filter(Boolean));
++  const nameTokens = new Set(name.split(" ").filter(Boolean));
++
++  if (queryTokens.size === 0 || nameTokens.size === 0) {
++    return 0;
++  }
++
++  const overlap = [...queryTokens].filter((token) => nameTokens.has(token)).length;
++  return overlap / Math.max(queryTokens.size, nameTokens.size);
++}
++
++export function findStoreMatches(query: string, limit = 3): StoreMatch[] {
++  const normalizedQuery = normaliseStoreText(query);
++
++  if (!normalizedQuery) {
++    return [];
++  }
++
++  return stores
++    .map((store) => {
++      const normalizedName = normaliseStoreText(store.name);
++      let score = 0;
++
++      if (normalizedName === normalizedQuery) {
++        score = 100;
++      } else if (
++        normalizedName.includes(normalizedQuery) ||
++        normalizedQuery.includes(normalizedName)
++      ) {
++        score = 84;
++      } else {
++        score = Math.round(tokenOverlapScore(normalizedQuery, normalizedName) * 72);
++      }
++
++      return { store, score };
++    })
++    .filter((match) => match.score > 0)
++    .sort((a, b) => b.score - a.score)
++    .slice(0, limit);
++}
++
++export function resolveStore(query: string) {
++  const matches = findStoreMatches(query);
++  const best = matches[0];
++  const second = matches[1];
++
++  if (!best || best.score < 58) {
++    return { store: undefined, matches };
++  }
++
++  if (second && best.score - second.score < 7 && best.score < 100) {
++    return { store: undefined, matches };
++  }
++
++  return { store: best.store, matches };
++}
++
++export function getStoreById(id: string | undefined) {
++  return id ? routeContext.placeById.get(id) : undefined;
++}
++
++export function buildRouteForStores(startId: string, destinationId: string) {
++  const route = findShortestRoute(edges, startId, destinationId);
++
++  if (!route) {
++    return null;
++  }
++
++  return {
++    route,
++    steps: buildRouteSteps(route, routeContext)
++  };
++}
++
++export function storeCatalogueForPrompt() {
++  return stores.map((store) => ({
++    id: store.id,
++    name: store.name,
++    floor: store.floor_display ?? store.floor_id,
++    unit: store.unit ?? ""
++  }));
++}
+diff --git a/lib/openai-server.ts b/lib/openai-server.ts
+new file mode 100644
+index 0000000..0bfcab9
+--- /dev/null
++++ b/lib/openai-server.ts
+@@ -0,0 +1,56 @@
++import OpenAI from "openai";
++
++const DEFAULT_MODEL = "gpt-5.5";
++
++export function getOpenAIClient() {
++  const apiKey = process.env.OPENAI_API_KEY;
++
++  if (!apiKey) {
++    throw new Error("OPENAI_API_KEY is not configured.");
++  }
++
++  return new OpenAI({ apiKey });
++}
++
++export function getOpenAIModel() {
++  return process.env.OPENAI_MODEL || DEFAULT_MODEL;
++}
++
++type StructuredResponseOptions = {
++  schemaName: string;
++  schema: Record<string, unknown>;
++  instructions: string;
++  input: string | unknown[];
++  maxOutputTokens?: number;
++};
++
++export async function createStructuredResponse<T>({
++  schemaName,
++  schema,
++  instructions,
++  input,
++  maxOutputTokens = 700
++}: StructuredResponseOptions): Promise<T> {
++  const client = getOpenAIClient();
++
++  const response = await client.responses.create({
++    model: getOpenAIModel(),
++    instructions,
++    input: input as never,
++    max_output_tokens: maxOutputTokens,
++    text: {
++      format: {
++        type: "json_schema",
++        name: schemaName,
++        strict: true,
++        schema
++      }
++    }
++  });
++
++  if (!response.output_text) {
++    throw new Error("The model returned no text output.");
++  }
++
++  return JSON.parse(response.output_text) as T;
++}
+-- 
+2.47.3
+
