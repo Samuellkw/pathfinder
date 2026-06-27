@@ -1,0 +1,35 @@
+{
+  "schema_version": "3.0.0",
+  "floors": [
+    {
+      "floor_id": "b1",
+      "display_name": "Basement 1",
+      "map_asset_id": "asset_map_b1_reference",
+      "included_navigation_area": "Outer oval corridor captured by the team in both directions.",
+      "excluded_areas": [
+        "Central retail island / middle section."
+      ],
+      "routing_constraint": "Never use the B1 middle section as a shortcut."
+    },
+    {
+      "floor_id": "l1",
+      "display_name": "Level 1",
+      "map_asset_id": "asset_map_l1_reference",
+      "included_navigation_area": "Lower Level 1 loop from Bath & Body Works onward.",
+      "excluded_areas": [
+        "Northern/upward extension towards Taxi, Sephora, MRT and unphotographed upper shops."
+      ],
+      "routing_constraint": "Do not route north of Bath & Body Works in this pilot."
+    },
+    {
+      "floor_id": "l2",
+      "display_name": "Level 2",
+      "map_asset_id": "asset_map_l2_reference",
+      "included_navigation_area": "Selected photographed main ring.",
+      "excluded_areas": [
+        "Car park area and unphotographed branches."
+      ],
+      "routing_constraint": "Use only the selected main ring and verified connectors."
+    }
+  ]
+}

@@ -1,0 +1,695 @@
+{
+  "schema_version": "4.0.0",
+  "description": "Canonical routing nodes. Stores are destinations; connector endpoints are directional escalator waypoints.",
+  "nodes": [
+    {
+      "id": "b1_tinsel-rack",
+      "type": "store",
+      "name": "Tinsel Rack",
+      "floor_id": "b1",
+      "unit": "#B1-03",
+      "searchable_destination": true,
+      "clockwise_index": 1,
+      "photo_assets": [
+        "asset_b1_tinsel-rack_capture_1",
+        "asset_b1_tinsel-rack_capture_2"
+      ]
+    },
+    {
+      "id": "b1_istudio",
+      "type": "store",
+      "name": "iStudio",
+      "floor_id": "b1",
+      "unit": "#B1-04",
+      "searchable_destination": true,
+      "clockwise_index": 2,
+      "photo_assets": [
+        "asset_b1_istudio_capture_1",
+        "asset_b1_istudio_capture_2"
+      ]
+    },
+    {
+      "id": "b1_taiwan-noodle-and-dumpling",
+      "type": "store",
+      "name": "Taiwan Noodle and Dumpling",
+      "floor_id": "b1",
+      "unit": "#B1-08",
+      "searchable_destination": true,
+      "clockwise_index": 3,
+      "photo_assets": [
+        "asset_b1_taiwan-noodle-and-dumpling_capture_1",
+        "asset_b1_taiwan-noodle-and-dumpling_capture_2"
+      ]
+    },
+    {
+      "id": "b1_burger-king",
+      "type": "store",
+      "name": "Burger King",
+      "floor_id": "b1",
+      "unit": "#B1-11",
+      "searchable_destination": true,
+      "clockwise_index": 4,
+      "photo_assets": [
+        "asset_b1_burger-king_capture_1",
+        "asset_b1_burger-king_capture_2"
+      ]
+    },
+    {
+      "id": "b1_lenskart",
+      "type": "store",
+      "name": "Lenskart",
+      "floor_id": "b1",
+      "unit": "#B1-12",
+      "searchable_destination": true,
+      "clockwise_index": 5,
+      "photo_assets": [
+        "asset_b1_lenskart_capture_1",
+        "asset_b1_lenskart_capture_2"
+      ]
+    },
+    {
+      "id": "b1_art-friend",
+      "type": "store",
+      "name": "Art Friend",
+      "floor_id": "b1",
+      "unit": "#B1-10/13",
+      "searchable_destination": true,
+      "clockwise_index": 6,
+      "photo_assets": [
+        "asset_b1_art-friend_capture_1",
+        "asset_b1_art-friend_capture_2"
+      ]
+    },
+    {
+      "id": "b1_supergurl",
+      "type": "store",
+      "name": "Supergurl",
+      "floor_id": "b1",
+      "unit": "#B1-15",
+      "searchable_destination": true,
+      "clockwise_index": 7,
+      "photo_assets": [
+        "asset_b1_supergurl_capture_1",
+        "asset_b1_supergurl_capture_2"
+      ]
+    },
+    {
+      "id": "b1_dmk",
+      "type": "store",
+      "name": "DMK",
+      "floor_id": "b1",
+      "unit": "#B1-17",
+      "searchable_destination": true,
+      "clockwise_index": 8,
+      "photo_assets": [
+        "asset_b1_dmk_capture_1",
+        "asset_b1_dmk_capture_2"
+      ]
+    },
+    {
+      "id": "b1_neonmello",
+      "type": "store",
+      "name": "Neonmello",
+      "floor_id": "b1",
+      "unit": "#B1-17A",
+      "searchable_destination": true,
+      "clockwise_index": 9,
+      "photo_assets": [
+        "asset_b1_neonmello_capture_1",
+        "asset_b1_neonmello_capture_2"
+      ]
+    },
+    {
+      "id": "b1_fash-mob",
+      "type": "store",
+      "name": "Fash Mob",
+      "floor_id": "b1",
+      "unit": "#B1-18",
+      "searchable_destination": true,
+      "clockwise_index": 10,
+      "photo_assets": [
+        "asset_b1_fash-mob_capture_1",
+        "asset_b1_fash-mob_capture_2"
+      ]
+    },
+    {
+      "id": "b1_love-and-bravery",
+      "type": "store",
+      "name": "Love & Bravery",
+      "floor_id": "b1",
+      "unit": "#B1-20",
+      "searchable_destination": true,
+      "clockwise_index": 11,
+      "photo_assets": [
+        "asset_b1_love-and-bravery_capture_1",
+        "asset_b1_love-and-bravery_capture_2"
+      ]
+    },
+    {
+      "id": "b1_kfc",
+      "type": "store",
+      "name": "KFC",
+      "floor_id": "b1",
+      "unit": "#B1-21/22",
+      "searchable_destination": true,
+      "clockwise_index": 12,
+      "photo_assets": [
+        "asset_b1_kfc_capture_2"
+      ]
+    },
+    {
+      "id": "b1_mcdonalds",
+      "type": "store",
+      "name": "McDonald's",
+      "floor_id": "b1",
+      "unit": "#B1-23/24",
+      "searchable_destination": true,
+      "clockwise_index": 13,
+      "photo_assets": [
+        "asset_b1_mcdonalds_capture_1",
+        "asset_b1_mcdonalds_capture_2"
+      ]
+    },
+    {
+      "id": "b1_dbs",
+      "type": "store",
+      "name": "DBS",
+      "floor_id": "b1",
+      "unit": "#B1-25",
+      "searchable_destination": true,
+      "clockwise_index": 14,
+      "photo_assets": [
+        "asset_b1_dbs_capture_1",
+        "asset_b1_dbs_capture_2"
+      ]
+    },
+    {
+      "id": "b1_smiggle",
+      "type": "store",
+      "name": "Smiggle",
+      "floor_id": "b1",
+      "unit": "#B1-02",
+      "searchable_destination": true,
+      "clockwise_index": 15,
+      "photo_assets": [
+        "asset_b1_smiggle_capture_1",
+        "asset_b1_smiggle_capture_2"
+      ]
+    },
+    {
+      "id": "l1_pedro",
+      "type": "store",
+      "name": "Pedro",
+      "floor_id": "l1",
+      "unit": "#01-03",
+      "searchable_destination": true,
+      "clockwise_index": 1,
+      "photo_assets": [
+        "asset_l1_pedro_capture_1",
+        "asset_l1_pedro_capture_2"
+      ]
+    },
+    {
+      "id": "l1_levis",
+      "type": "store",
+      "name": "Levi's",
+      "floor_id": "l1",
+      "unit": "#01-04",
+      "searchable_destination": true,
+      "clockwise_index": 2,
+      "photo_assets": [
+        "asset_l1_levis_capture_1",
+        "asset_l1_levis_capture_2"
+      ]
+    },
+    {
+      "id": "l1_determinant",
+      "type": "store",
+      "name": "Determinant",
+      "floor_id": "l1",
+      "unit": "#01-05",
+      "searchable_destination": true,
+      "clockwise_index": 3,
+      "photo_assets": [
+        "asset_l1_determinant_capture_1",
+        "asset_l1_determinant_capture_2"
+      ]
+    },
+    {
+      "id": "l1_g2000",
+      "type": "store",
+      "name": "G2000",
+      "floor_id": "l1",
+      "unit": "#01-06",
+      "searchable_destination": true,
+      "clockwise_index": 4,
+      "photo_assets": [
+        "asset_l1_g2000_capture_1",
+        "asset_l1_g2000_capture_2"
+      ]
+    },
+    {
+      "id": "l1_ecco",
+      "type": "store",
+      "name": "ECCO",
+      "floor_id": "l1",
+      "unit": "#01-08",
+      "searchable_destination": true,
+      "clockwise_index": 5,
+      "photo_assets": [
+        "asset_l1_ecco_capture_1",
+        "asset_l1_ecco_capture_2"
+      ]
+    },
+    {
+      "id": "l1_benjamin-barker",
+      "type": "store",
+      "name": "Benjamin Barker",
+      "floor_id": "l1",
+      "unit": "#01-09",
+      "searchable_destination": true,
+      "clockwise_index": 6,
+      "photo_assets": [
+        "asset_l1_benjamin-barker_capture_1",
+        "asset_l1_benjamin-barker_capture_2"
+      ]
+    },
+    {
+      "id": "l1_muji",
+      "type": "store",
+      "name": "MUJI",
+      "floor_id": "l1",
+      "unit": "#01-10/22",
+      "searchable_destination": true,
+      "clockwise_index": 7,
+      "photo_assets": [
+        "asset_l1_muji_capture_1",
+        "asset_l1_muji_capture_2"
+      ]
+    },
+    {
+      "id": "l1_tiong-bahru-bakery",
+      "type": "store",
+      "name": "Tiong Bahru Bakery",
+      "floor_id": "l1",
+      "unit": "#01-23",
+      "searchable_destination": true,
+      "clockwise_index": 8,
+      "photo_assets": [
+        "asset_l1_tiong-bahru-bakery_capture_1",
+        "asset_l1_tiong-bahru-bakery_capture_2"
+      ]
+    },
+    {
+      "id": "l1_aldo",
+      "type": "store",
+      "name": "ALDO",
+      "floor_id": "l1",
+      "unit": "#01-24",
+      "searchable_destination": true,
+      "clockwise_index": 9,
+      "photo_assets": [
+        "asset_l1_aldo_capture_1",
+        "asset_l1_aldo_capture_2"
+      ]
+    },
+    {
+      "id": "l1_ray-ban",
+      "type": "store",
+      "name": "Ray-Ban",
+      "floor_id": "l1",
+      "unit": "#01-25",
+      "searchable_destination": true,
+      "clockwise_index": 10,
+      "photo_assets": [
+        "asset_l1_ray-ban_capture_1",
+        "asset_l1_ray-ban_capture_2"
+      ]
+    },
+    {
+      "id": "l1_goldheart",
+      "type": "store",
+      "name": "Goldheart",
+      "floor_id": "l1",
+      "unit": "#01-30",
+      "searchable_destination": true,
+      "clockwise_index": 11,
+      "photo_assets": [
+        "asset_l1_goldheart_capture_1",
+        "asset_l1_goldheart_capture_2"
+      ]
+    },
+    {
+      "id": "l1_five-guys",
+      "type": "store",
+      "name": "Five Guys",
+      "floor_id": "l1",
+      "unit": "#01-32",
+      "searchable_destination": true,
+      "clockwise_index": 12,
+      "photo_assets": [
+        "asset_l1_five-guys_capture_1",
+        "asset_l1_five-guys_capture_2"
+      ]
+    },
+    {
+      "id": "l1_the-body-shop",
+      "type": "store",
+      "name": "The Body Shop",
+      "floor_id": "l1",
+      "unit": "#01-02",
+      "searchable_destination": true,
+      "clockwise_index": 13,
+      "photo_assets": [
+        "asset_l1_the-body-shop_capture_1",
+        "asset_l1_the-body-shop_capture_2"
+      ]
+    },
+    {
+      "id": "l2_asics",
+      "type": "store",
+      "name": "ASICS",
+      "floor_id": "l2",
+      "unit": "#02-04",
+      "searchable_destination": true,
+      "clockwise_index": 1,
+      "photo_assets": [
+        "asset_l2_asics_capture_1",
+        "asset_l2_asics_capture_2"
+      ]
+    },
+    {
+      "id": "l2_setirom",
+      "type": "store",
+      "name": "Setirom",
+      "floor_id": "l2",
+      "unit": null,
+      "searchable_destination": true,
+      "clockwise_index": 2,
+      "photo_assets": [
+        "asset_l2_setirom_capture_1",
+        "asset_l2_setirom_capture_2"
+      ]
+    },
+    {
+      "id": "l2_anta",
+      "type": "store",
+      "name": "ANTA",
+      "floor_id": "l2",
+      "unit": "#02-09",
+      "searchable_destination": true,
+      "clockwise_index": 3,
+      "photo_assets": [
+        "asset_l2_anta_capture_1",
+        "asset_l2_anta_capture_2"
+      ]
+    },
+    {
+      "id": "l2_uniqlo",
+      "type": "store",
+      "name": "UNIQLO",
+      "floor_id": "l2",
+      "unit": "#02-16–20",
+      "searchable_destination": true,
+      "clockwise_index": 4,
+      "photo_assets": [
+        "asset_l2_uniqlo_capture_1",
+        "asset_l2_uniqlo_capture_2"
+      ]
+    },
+    {
+      "id": "l2_meilleur-moment",
+      "type": "store",
+      "name": "Meilleur Moment",
+      "floor_id": "l2",
+      "unit": "#02-21/22",
+      "searchable_destination": true,
+      "clockwise_index": 5,
+      "photo_assets": [
+        "asset_l2_meilleur-moment_capture_1",
+        "asset_l2_meilleur-moment_capture_2"
+      ]
+    },
+    {
+      "id": "l2_charles-and-keith",
+      "type": "store",
+      "name": "Charles & Keith",
+      "floor_id": "l2",
+      "unit": "#02-28/28A",
+      "searchable_destination": true,
+      "clockwise_index": 6,
+      "photo_assets": [
+        "asset_l2_charles-and-keith_capture_1",
+        "asset_l2_charles-and-keith_capture_2"
+      ]
+    },
+    {
+      "id": "l2_spectacle-hut",
+      "type": "store",
+      "name": "Spectacle Hut",
+      "floor_id": "l2",
+      "unit": "#02-29/29A",
+      "searchable_destination": true,
+      "clockwise_index": 7,
+      "photo_assets": [
+        "asset_l2_spectacle-hut_capture_1",
+        "asset_l2_spectacle-hut_capture_2"
+      ]
+    },
+    {
+      "id": "l2_typo",
+      "type": "store",
+      "name": "TYPO",
+      "floor_id": "l2",
+      "unit": "#02-30",
+      "searchable_destination": true,
+      "clockwise_index": 8,
+      "photo_assets": [
+        "asset_l2_typo_capture_1",
+        "asset_l2_typo_capture_2"
+      ]
+    },
+    {
+      "id": "l2_din-tai-fung",
+      "type": "store",
+      "name": "Din Tai Fung",
+      "floor_id": "l2",
+      "unit": "#02-32/36",
+      "searchable_destination": true,
+      "clockwise_index": 9,
+      "photo_assets": [
+        "asset_l2_din-tai-fung_capture_1",
+        "asset_l2_din-tai-fung_capture_2"
+      ]
+    },
+    {
+      "id": "l2_seorae",
+      "type": "store",
+      "name": "Seorae",
+      "floor_id": "l2",
+      "unit": null,
+      "searchable_destination": true,
+      "clockwise_index": 10,
+      "photo_assets": [
+        "asset_l2_seorae_capture_1",
+        "asset_l2_seorae_capture_2"
+      ]
+    },
+    {
+      "id": "b1_connector_a_up_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_a",
+      "name": "Connector A — B1 up entry",
+      "floor_id": "b1",
+      "nearby_store_node_ids": [
+        "b1_lenskart"
+      ],
+      "traversal_role": "up_entry",
+      "user_verified": true,
+      "photo_asset_id": "asset_connector_a_b1_lenskart_reference"
+    },
+    {
+      "id": "l1_connector_a_up_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_a",
+      "name": "Connector A — L1 up exit",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_aldo",
+        "l1_ray-ban"
+      ],
+      "traversal_role": "up_exit",
+      "user_verified": true
+    },
+    {
+      "id": "l1_connector_a_down_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_a",
+      "name": "Connector A — L1 down entry",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_g2000"
+      ],
+      "traversal_role": "down_entry",
+      "user_verified": true
+    },
+    {
+      "id": "b1_connector_a_down_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_a",
+      "name": "Connector A — B1 down exit",
+      "floor_id": "b1",
+      "nearby_store_node_ids": [
+        "b1_lenskart"
+      ],
+      "traversal_role": "down_exit",
+      "user_verified": true,
+      "photo_asset_id": "asset_connector_a_b1_lenskart_reference"
+    },
+    {
+      "id": "b1_connector_b_up_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_b",
+      "name": "Connector B — B1 up entry",
+      "floor_id": "b1",
+      "nearby_store_node_ids": [
+        "b1_dbs"
+      ],
+      "traversal_role": "up_entry",
+      "user_verified": true
+    },
+    {
+      "id": "l1_connector_b_up_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_b",
+      "name": "Connector B — L1 up exit",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_goldheart"
+      ],
+      "traversal_role": "up_exit",
+      "user_verified": true
+    },
+    {
+      "id": "l1_connector_c_down_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_c",
+      "name": "Connector C — L1 down entry",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_the-body-shop"
+      ],
+      "traversal_role": "down_entry",
+      "user_verified": true
+    },
+    {
+      "id": "b1_connector_c_down_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_c",
+      "name": "Connector C — B1 down exit",
+      "floor_id": "b1",
+      "nearby_store_node_ids": [
+        "b1_mcdonalds",
+        "b1_kfc"
+      ],
+      "traversal_role": "down_exit",
+      "user_verified": true
+    },
+    {
+      "id": "l1_connector_d_up_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_d",
+      "name": "Connector D — L1 up entry",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_aldo"
+      ],
+      "traversal_role": "up_entry",
+      "user_verified": true
+    },
+    {
+      "id": "l2_connector_d_up_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_d",
+      "name": "Connector D — L2 up exit",
+      "floor_id": "l2",
+      "nearby_store_node_ids": [
+        "l2_charles-and-keith"
+      ],
+      "traversal_role": "up_exit",
+      "user_verified": true
+    },
+    {
+      "id": "l2_connector_e_down_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_e",
+      "name": "Connector E — L2 down entry",
+      "floor_id": "l2",
+      "nearby_store_node_ids": [
+        "l2_anta"
+      ],
+      "traversal_role": "down_entry",
+      "user_verified": true
+    },
+    {
+      "id": "l1_connector_e_down_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_e",
+      "name": "Connector E — L1 down exit",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_g2000"
+      ],
+      "traversal_role": "down_exit",
+      "user_verified": true
+    },
+    {
+      "id": "l1_connector_f_up_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_f",
+      "name": "Connector F — L1 up entry",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_goldheart"
+      ],
+      "traversal_role": "up_entry",
+      "user_verified": true
+    },
+    {
+      "id": "l2_connector_f_up_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_f",
+      "name": "Connector F — L2 up exit",
+      "floor_id": "l2",
+      "nearby_store_node_ids": [
+        "l2_asics"
+      ],
+      "traversal_role": "up_exit",
+      "user_verified": true
+    },
+    {
+      "id": "l2_connector_g_down_entry",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_g",
+      "name": "Connector G — L2 down entry",
+      "floor_id": "l2",
+      "nearby_store_node_ids": [
+        "l2_typo"
+      ],
+      "traversal_role": "down_entry",
+      "user_verified": true
+    },
+    {
+      "id": "l1_connector_g_down_exit",
+      "type": "connector_endpoint",
+      "connector_group_id": "connector_g",
+      "name": "Connector G — L1 down exit",
+      "floor_id": "l1",
+      "nearby_store_node_ids": [
+        "l1_the-body-shop"
+      ],
+      "traversal_role": "down_exit",
+      "user_verified": true
+    }
+  ]
+}

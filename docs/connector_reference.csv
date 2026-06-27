@@ -1,0 +1,9 @@
+connector,type,direction,from_floor,from_landmark,to_floor,to_landmark,instruction,user_verified
+Connector A,paired_escalators,up,B1,"Near Lenskart, B1 — use the left-side escalator when facing the Lenskart area.",L1,Level 1 exit nearest ALDO / Ray-Ban.,"Near Lenskart, take the left-side escalator up to Level 1. Exit near ALDO and Ray-Ban.",yes
+Connector A,paired_escalators,down,L1,Level 1 entry nearest G2000.,B1,B1 exit near Lenskart.,"Near G2000, take the escalator down to B1. You will exit near Lenskart.",yes
+Connector B,escalator,up,B1,"Near DBS, B1.",L1,Level 1 exit near Goldheart.,"Near DBS, take the escalator up to Level 1. Exit near Goldheart.",yes
+Connector C,escalator,down,L1,"Near The Body Shop, Level 1.",B1,B1 exit near McDonald's / KFC.,"Near The Body Shop, take the escalator down to B1. Exit beside McDonald's and KFC.",yes
+Connector D,escalator,up,L1,"Near ALDO, Level 1.",L2,Level 2 exit near Charles & Keith.,"Near ALDO, take the escalator up to Level 2. Exit near Charles & Keith.",yes
+Connector E,escalator,down,L2,"Near ANTA, Level 2.",L1,Level 1 exit near G2000.,"Near ANTA, take the escalator down to Level 1. Exit near G2000.",yes
+Connector F,escalator,up,L1,"Near Goldheart, Level 1.",L2,Level 2 exit near ASICS.,"Near Goldheart, take the escalator up to Level 2. Exit near ASICS.",yes
+Connector G,escalator,down,L2,"Near TYPO, Level 2.",L1,Level 1 exit near The Body Shop.,"Near TYPO, take the escalator down to Level 1. Exit near The Body Shop.",yes

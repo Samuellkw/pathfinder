@@ -1,0 +1,90 @@
+{
+  "schema_version": "4.0.0",
+  "floors": [
+    {
+      "floor_id": "b1",
+      "topology": "closed_loop",
+      "clockwise_node_ids": [
+        "b1_tinsel-rack",
+        "b1_istudio",
+        "b1_taiwan-noodle-and-dumpling",
+        "b1_burger-king",
+        "b1_lenskart",
+        "b1_art-friend",
+        "b1_supergurl",
+        "b1_dmk",
+        "b1_neonmello",
+        "b1_fash-mob",
+        "b1_love-and-bravery",
+        "b1_kfc",
+        "b1_mcdonalds",
+        "b1_dbs",
+        "b1_smiggle"
+      ],
+      "same_floor_routing_enabled": true,
+      "cross_floor_routing_enabled": true,
+      "edge_cost_policy": "logical_hops_until_measured",
+      "connector_groups_touching_floor": [
+        "connector_a",
+        "connector_b",
+        "connector_c"
+      ]
+    },
+    {
+      "floor_id": "l1",
+      "topology": "closed_loop",
+      "clockwise_node_ids": [
+        "l1_pedro",
+        "l1_levis",
+        "l1_determinant",
+        "l1_g2000",
+        "l1_ecco",
+        "l1_benjamin-barker",
+        "l1_muji",
+        "l1_tiong-bahru-bakery",
+        "l1_aldo",
+        "l1_ray-ban",
+        "l1_goldheart",
+        "l1_five-guys",
+        "l1_the-body-shop"
+      ],
+      "same_floor_routing_enabled": true,
+      "cross_floor_routing_enabled": true,
+      "edge_cost_policy": "logical_hops_until_measured",
+      "connector_groups_touching_floor": [
+        "connector_a",
+        "connector_b",
+        "connector_c",
+        "connector_d",
+        "connector_e",
+        "connector_f",
+        "connector_g"
+      ]
+    },
+    {
+      "floor_id": "l2",
+      "topology": "closed_loop",
+      "clockwise_node_ids": [
+        "l2_asics",
+        "l2_setirom",
+        "l2_anta",
+        "l2_uniqlo",
+        "l2_meilleur-moment",
+        "l2_charles-and-keith",
+        "l2_spectacle-hut",
+        "l2_typo",
+        "l2_din-tai-fung",
+        "l2_seorae"
+      ],
+      "same_floor_routing_enabled": true,
+      "cross_floor_routing_enabled": true,
+      "edge_cost_policy": "logical_hops_until_measured",
+      "connector_groups_touching_floor": [
+        "connector_d",
+        "connector_e",
+        "connector_f",
+        "connector_g"
+      ]
+    }
+  ]
+}

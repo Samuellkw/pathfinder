@@ -1,0 +1,1927 @@
+{
+  "schema_version": "4.0.0",
+  "assets": [
+    {
+      "id": "asset_b1_tinsel-rack_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_tinsel-rack",
+      "web_path": "/assets/places/b1/b1_tinsel-rack/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Tinsel Rack B1-03 /IMG_3452.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_tinsel-rack_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_tinsel-rack",
+      "web_path": "/assets/places/b1/b1_tinsel-rack/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Tinsel Rack B1-03 /IMG_3453.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_istudio_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_istudio",
+      "web_path": "/assets/places/b1/b1_istudio/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/istudio b1-04 /IMG_3454.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_istudio_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_istudio",
+      "web_path": "/assets/places/b1/b1_istudio/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/istudio b1-04 /IMG_3455.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_taiwan-noodle-and-dumpling_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_taiwan-noodle-and-dumpling",
+      "web_path": "/assets/places/b1/b1_taiwan-noodle-and-dumpling/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Taiwan noodle and dumpling B1-08 /IMG_3456.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_taiwan-noodle-and-dumpling_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_taiwan-noodle-and-dumpling",
+      "web_path": "/assets/places/b1/b1_taiwan-noodle-and-dumpling/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Taiwan noodle and dumpling B1-08 /IMG_3457.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_burger-king_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_burger-king",
+      "web_path": "/assets/places/b1/b1_burger-king/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Burger king b1-11/IMG_3458.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_burger-king_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_burger-king",
+      "web_path": "/assets/places/b1/b1_burger-king/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Burger king b1-11/IMG_3459.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_lenskart_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_lenskart",
+      "web_path": "/assets/places/b1/b1_lenskart/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Lenskart B1-12 /IMG_3460.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_lenskart_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_lenskart",
+      "web_path": "/assets/places/b1/b1_lenskart/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Lenskart B1-12 /IMG_3461.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_art-friend_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_art-friend",
+      "web_path": "/assets/places/b1/b1_art-friend/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Art friend b1-10-13 /IMG_3462.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_art-friend_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_art-friend",
+      "web_path": "/assets/places/b1/b1_art-friend/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Art friend b1-10-13 /IMG_3463.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_supergurl_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_supergurl",
+      "web_path": "/assets/places/b1/b1_supergurl/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Super gurl b1-15/IMG_3464.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_supergurl_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_supergurl",
+      "web_path": "/assets/places/b1/b1_supergurl/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Super gurl b1-15/IMG_3465.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_dmk_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_dmk",
+      "web_path": "/assets/places/b1/b1_dmk/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/DMK B1-17/IMG_3466.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_dmk_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_dmk",
+      "web_path": "/assets/places/b1/b1_dmk/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/DMK B1-17/IMG_3467.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_neonmello_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_neonmello",
+      "web_path": "/assets/places/b1/b1_neonmello/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Neonmello B1-17A/IMG_3468.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_neonmello_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_neonmello",
+      "web_path": "/assets/places/b1/b1_neonmello/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Neonmello B1-17A/IMG_3469.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_fash-mob_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_fash-mob",
+      "web_path": "/assets/places/b1/b1_fash-mob/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Fash Mob B1-18/IMG_3470.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_fash-mob_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_fash-mob",
+      "web_path": "/assets/places/b1/b1_fash-mob/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Fash Mob B1-18/IMG_3471.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_love-and-bravery_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_love-and-bravery",
+      "web_path": "/assets/places/b1/b1_love-and-bravery/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Love n Bravery B1-20 /IMG_3472.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_love-and-bravery_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_love-and-bravery",
+      "web_path": "/assets/places/b1/b1_love-and-bravery/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Love n Bravery B1-20 /IMG_3476.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_kfc_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_kfc",
+      "web_path": null,
+      "source_path_in_uploaded_zip": "B1/KFC B1-21-22/IMG_3476.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": "asset_b1_love-and-bravery_capture_2",
+      "status": "excluded_duplicate"
+    },
+    {
+      "id": "asset_b1_kfc_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_kfc",
+      "web_path": "/assets/places/b1/b1_kfc/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/KFC B1-21-22/IMG_3477.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_mcdonalds_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_mcdonalds",
+      "web_path": "/assets/places/b1/b1_mcdonalds/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Mcdonald’s B1-23-24/IMG_3478.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_mcdonalds_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_mcdonalds",
+      "web_path": "/assets/places/b1/b1_mcdonalds/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Mcdonald’s B1-23-24/IMG_3479.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_dbs_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_dbs",
+      "web_path": "/assets/places/b1/b1_dbs/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/DBS B1-25/IMG_3480.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_dbs_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_dbs",
+      "web_path": "/assets/places/b1/b1_dbs/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/DBS B1-25/IMG_3481.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_smiggle_capture_1",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_smiggle",
+      "web_path": "/assets/places/b1/b1_smiggle/capture-01.jpg",
+      "source_path_in_uploaded_zip": "B1/Smiggle B1-02/IMG_3482.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_smiggle_capture_2",
+      "kind": "place_capture",
+      "floor_id": "b1",
+      "node_id": "b1_smiggle",
+      "web_path": "/assets/places/b1/b1_smiggle/capture-02.jpg",
+      "source_path_in_uploaded_zip": "B1/Smiggle B1-02/IMG_3483.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_pedro_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_pedro",
+      "web_path": "/assets/places/l1/l1_pedro/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Pedro 01-03/IMG_3502.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_pedro_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_pedro",
+      "web_path": "/assets/places/l1/l1_pedro/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Pedro 01-03/IMG_3503.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_levis_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_levis",
+      "web_path": "/assets/places/l1/l1_levis/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Levi’s 01-04/IMG_3504.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_levis_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_levis",
+      "web_path": "/assets/places/l1/l1_levis/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Levi’s 01-04/IMG_3505.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_determinant_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_determinant",
+      "web_path": "/assets/places/l1/l1_determinant/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Determinant 01-05/IMG_3506.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_determinant_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_determinant",
+      "web_path": "/assets/places/l1/l1_determinant/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Determinant 01-05/IMG_3507.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_g2000_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_g2000",
+      "web_path": "/assets/places/l1/l1_g2000/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/G2000 01-06/IMG_3508.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_g2000_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_g2000",
+      "web_path": "/assets/places/l1/l1_g2000/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/G2000 01-06/IMG_3509.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_ecco_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_ecco",
+      "web_path": "/assets/places/l1/l1_ecco/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Ecco 01-08/IMG_3510.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_ecco_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_ecco",
+      "web_path": "/assets/places/l1/l1_ecco/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Ecco 01-08/IMG_3511.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_benjamin-barker_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_benjamin-barker",
+      "web_path": "/assets/places/l1/l1_benjamin-barker/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Benjamin Barker 01-09/IMG_3512.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_benjamin-barker_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_benjamin-barker",
+      "web_path": "/assets/places/l1/l1_benjamin-barker/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Benjamin Barker 01-09/IMG_3513.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_muji_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_muji",
+      "web_path": "/assets/places/l1/l1_muji/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Muji 01-10-22/IMG_3514.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_muji_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_muji",
+      "web_path": "/assets/places/l1/l1_muji/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Muji 01-10-22/IMG_3515.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_tiong-bahru-bakery_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_tiong-bahru-bakery",
+      "web_path": "/assets/places/l1/l1_tiong-bahru-bakery/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Tiong Bahru Bakery 01-23/IMG_3516.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_tiong-bahru-bakery_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_tiong-bahru-bakery",
+      "web_path": "/assets/places/l1/l1_tiong-bahru-bakery/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Tiong Bahru Bakery 01-23/IMG_3517.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_aldo_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_aldo",
+      "web_path": "/assets/places/l1/l1_aldo/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Aldo 01-24 /IMG_3518.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_aldo_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_aldo",
+      "web_path": "/assets/places/l1/l1_aldo/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Aldo 01-24 /IMG_3519.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_ray-ban_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_ray-ban",
+      "web_path": "/assets/places/l1/l1_ray-ban/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Ray Ban 01-25/IMG_3520.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_ray-ban_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_ray-ban",
+      "web_path": "/assets/places/l1/l1_ray-ban/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Ray Ban 01-25/IMG_3521.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_goldheart_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_goldheart",
+      "web_path": "/assets/places/l1/l1_goldheart/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Gold heart 01-30 /IMG_3522.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_goldheart_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_goldheart",
+      "web_path": "/assets/places/l1/l1_goldheart/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Gold heart 01-30 /IMG_3523.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_five-guys_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_five-guys",
+      "web_path": "/assets/places/l1/l1_five-guys/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/Five Guys 01-32/IMG_3524.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_five-guys_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_five-guys",
+      "web_path": "/assets/places/l1/l1_five-guys/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/Five Guys 01-32/IMG_3525.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_the-body-shop_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_the-body-shop",
+      "web_path": "/assets/places/l1/l1_the-body-shop/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L1/The body shop 01-02/IMG_3526.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_the-body-shop_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l1",
+      "node_id": "l1_the-body-shop",
+      "web_path": "/assets/places/l1/l1_the-body-shop/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L1/The body shop 01-02/IMG_3527.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_asics_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_asics",
+      "web_path": "/assets/places/l2/l2_asics/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Asics 02-04/IMG_3546.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_asics_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_asics",
+      "web_path": "/assets/places/l2/l2_asics/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Asics 02-04/IMG_3547.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_setirom_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_setirom",
+      "web_path": "/assets/places/l2/l2_setirom/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Setirom /IMG_3548.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_setirom_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_setirom",
+      "web_path": "/assets/places/l2/l2_setirom/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Setirom /IMG_3549.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_anta_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_anta",
+      "web_path": "/assets/places/l2/l2_anta/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Anta 02-09/IMG_3550.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_anta_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_anta",
+      "web_path": "/assets/places/l2/l2_anta/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Anta 02-09/IMG_3551.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_uniqlo_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_uniqlo",
+      "web_path": "/assets/places/l2/l2_uniqlo/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Uniqlo 02-16-20/IMG_3552.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_uniqlo_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_uniqlo",
+      "web_path": "/assets/places/l2/l2_uniqlo/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Uniqlo 02-16-20/IMG_3553.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_meilleur-moment_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_meilleur-moment",
+      "web_path": "/assets/places/l2/l2_meilleur-moment/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Meilleur Moment 02-21-22/IMG_3554.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_meilleur-moment_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_meilleur-moment",
+      "web_path": "/assets/places/l2/l2_meilleur-moment/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Meilleur Moment 02-21-22/IMG_3555.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_charles-and-keith_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_charles-and-keith",
+      "web_path": "/assets/places/l2/l2_charles-and-keith/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Charles&Keith 02-28-28A/IMG_3556.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_charles-and-keith_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_charles-and-keith",
+      "web_path": "/assets/places/l2/l2_charles-and-keith/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Charles&Keith 02-28-28A/IMG_3557.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_spectacle-hut_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_spectacle-hut",
+      "web_path": "/assets/places/l2/l2_spectacle-hut/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Spectacule Hut 02-29-29A/IMG_3558.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_spectacle-hut_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_spectacle-hut",
+      "web_path": "/assets/places/l2/l2_spectacle-hut/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Spectacule Hut 02-29-29A/IMG_3559.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_typo_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_typo",
+      "web_path": "/assets/places/l2/l2_typo/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Typo 02-30/IMG_3561.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_typo_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_typo",
+      "web_path": "/assets/places/l2/l2_typo/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Typo 02-30/IMG_3562.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_din-tai-fung_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_din-tai-fung",
+      "web_path": "/assets/places/l2/l2_din-tai-fung/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Din Tai Fung 02-32-36/IMG_3563.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_din-tai-fung_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_din-tai-fung",
+      "web_path": "/assets/places/l2/l2_din-tai-fung/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Din Tai Fung 02-32-36/IMG_3564.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_seorae_capture_1",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_seorae",
+      "web_path": "/assets/places/l2/l2_seorae/capture-01.jpg",
+      "source_path_in_uploaded_zip": "L2/Seorae/IMG_3565.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 1,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_seorae_capture_2",
+      "kind": "place_capture",
+      "floor_id": "l2",
+      "node_id": "l2_seorae",
+      "web_path": "/assets/places/l2/l2_seorae/capture-02.jpg",
+      "source_path_in_uploaded_zip": "L2/Seorae/IMG_3566.jpg",
+      "candidate_roles": [
+        "storefront_reference",
+        "outward_view_reference"
+      ],
+      "role_verified": false,
+      "capture_sequence_within_folder": 2,
+      "duplicate_of_asset_id": null,
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_map_b1_reference",
+      "kind": "floor_map_reference",
+      "floor_id": "b1",
+      "web_path": "/assets/maps/plaza-singapura-b1-reference.png",
+      "source": "team-supplied screenshot",
+      "status": "reference_only"
+    },
+    {
+      "id": "asset_map_l1_reference",
+      "kind": "floor_map_reference",
+      "floor_id": "l1",
+      "web_path": "/assets/maps/plaza-singapura-l1-reference.png",
+      "source": "team-supplied screenshot",
+      "status": "reference_only"
+    },
+    {
+      "id": "asset_map_l2_reference",
+      "kind": "floor_map_reference",
+      "floor_id": "l2",
+      "web_path": "/assets/maps/plaza-singapura-l2-reference.png",
+      "source": "team-supplied screenshot",
+      "status": "reference_only"
+    },
+    {
+      "id": "asset_b1_cw_hallway_a",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 1,
+      "step_key": "hallway_a",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/clockwise-01-hallway-a.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) A.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_cw_turn_a",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 2,
+      "step_key": "turn_a",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/clockwise-02-turn-a.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) A turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_cw_hallway_b",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 3,
+      "step_key": "hallway_b",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/clockwise-03-hallway-b.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) B.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_cw_turn_b",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 4,
+      "step_key": "turn_b",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/clockwise-04-turn-b.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) B turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_cw_hallway_c",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 5,
+      "step_key": "hallway_c",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/clockwise-05-hallway-c.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) C.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_cw_turn_c",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 6,
+      "step_key": "turn_c",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/clockwise-06-turn-c.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) C turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_cw_hallway_d",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 7,
+      "step_key": "hallway_d",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/clockwise-07-hallway-d.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) D.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_cw_turn_d",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "clockwise",
+      "sequence_position": 8,
+      "step_key": "turn_d",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/clockwise-08-turn-d.jpg",
+      "source_path_in_uploaded_zip": "B1/(CW) D turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_turn_d",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 1,
+      "step_key": "turn_d",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/counterclockwise-01-turn-d.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) D turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_hallway_d",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 2,
+      "step_key": "hallway_d",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/counterclockwise-02-hallway-d.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) D.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_turn_c",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 3,
+      "step_key": "turn_c",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/counterclockwise-03-turn-c.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) C turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_hallway_c",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 4,
+      "step_key": "hallway_c",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/counterclockwise-04-hallway-c.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) C.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_turn_b",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 5,
+      "step_key": "turn_b",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/counterclockwise-05-turn-b.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) B turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_hallway_b",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 6,
+      "step_key": "hallway_b",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/counterclockwise-06-hallway-b.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) B.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_turn_a",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 7,
+      "step_key": "turn_a",
+      "step_type": "turn",
+      "web_path": "/assets/routes/b1/counterclockwise-07-turn-a.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) A turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_b1_acw_hallway_a",
+      "kind": "route_step_photo",
+      "floor_id": "b1",
+      "direction": "counterclockwise",
+      "sequence_position": 8,
+      "step_key": "hallway_a",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/b1/counterclockwise-08-hallway-a.jpg",
+      "source_path_in_uploaded_zip": "B1/(ACW) A.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_hallway_a",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 1,
+      "step_key": "hallway_a",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/clockwise-01-hallway-a.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) A.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_turn_a",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 2,
+      "step_key": "turn_a",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/clockwise-02-turn-a.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) A turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_hallway_b",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 3,
+      "step_key": "hallway_b",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/clockwise-03-hallway-b.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) B.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_turn_b",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 4,
+      "step_key": "turn_b",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/clockwise-04-turn-b.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) B turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_hallway_c",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 5,
+      "step_key": "hallway_c",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/clockwise-05-hallway-c.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) C.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_turn_c",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 6,
+      "step_key": "turn_c",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/clockwise-06-turn-c.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) C turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_hallway_d",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 7,
+      "step_key": "hallway_d",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/clockwise-07-hallway-d.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) D.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_cw_turn_d",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "clockwise",
+      "sequence_position": 8,
+      "step_key": "turn_d",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/clockwise-08-turn-d.jpg",
+      "source_path_in_uploaded_zip": "L1/(CW) D turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_turn_d",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 1,
+      "step_key": "turn_d",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/counterclockwise-01-turn-d.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) D turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_hallway_d",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 2,
+      "step_key": "hallway_d",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/counterclockwise-02-hallway-d.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) D.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_turn_c",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 3,
+      "step_key": "turn_c",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/counterclockwise-03-turn-c.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) C turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_hallway_c",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 4,
+      "step_key": "hallway_c",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/counterclockwise-04-hallway-c.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) C.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_turn_b",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 5,
+      "step_key": "turn_b",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/counterclockwise-05-turn-b.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) B turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_hallway_b",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 6,
+      "step_key": "hallway_b",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/counterclockwise-06-hallway-b.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) B.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_turn_a",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 7,
+      "step_key": "turn_a",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l1/counterclockwise-07-turn-a.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) A turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l1_acw_hallway_a",
+      "kind": "route_step_photo",
+      "floor_id": "l1",
+      "direction": "counterclockwise",
+      "sequence_position": 8,
+      "step_key": "hallway_a",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l1/counterclockwise-08-hallway-a.jpg",
+      "source_path_in_uploaded_zip": "L1/(ACW) A.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_hallway_a",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 1,
+      "step_key": "hallway_a",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/clockwise-01-hallway-a.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) A.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_turn_a",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 2,
+      "step_key": "turn_a",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/clockwise-02-turn-a.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) A turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_hallway_b",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 3,
+      "step_key": "hallway_b",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/clockwise-03-hallway-b.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) B.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_turn_b",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 4,
+      "step_key": "turn_b",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/clockwise-04-turn-b.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) B turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_hallway_c",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 5,
+      "step_key": "hallway_c",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/clockwise-05-hallway-c.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) C.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_turn_c",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 6,
+      "step_key": "turn_c",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/clockwise-06-turn-c.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) C turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_hallway_d",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 7,
+      "step_key": "hallway_d",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/clockwise-07-hallway-d.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) D.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_cw_turn_d",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "clockwise",
+      "sequence_position": 8,
+      "step_key": "turn_d",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/clockwise-08-turn-d.jpg",
+      "source_path_in_uploaded_zip": "L2/(CW) D turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_turn_d",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 1,
+      "step_key": "turn_d",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/counterclockwise-01-turn-d.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) D turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_hallway_d",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 2,
+      "step_key": "hallway_d",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/counterclockwise-02-hallway-d.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) D.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_turn_c",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 3,
+      "step_key": "turn_c",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/counterclockwise-03-turn-c.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) C turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_hallway_c",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 4,
+      "step_key": "hallway_c",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/counterclockwise-04-hallway-c.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) C.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_turn_b",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 5,
+      "step_key": "turn_b",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/counterclockwise-05-turn-b.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) B turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_hallway_b",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 6,
+      "step_key": "hallway_b",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/counterclockwise-06-hallway-b.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) B.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_turn_a",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 7,
+      "step_key": "turn_a",
+      "step_type": "turn",
+      "web_path": "/assets/routes/l2/counterclockwise-07-turn-a.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) A turn.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_l2_acw_hallway_a",
+      "kind": "route_step_photo",
+      "floor_id": "l2",
+      "direction": "counterclockwise",
+      "sequence_position": 8,
+      "step_key": "hallway_a",
+      "step_type": "hallway",
+      "web_path": "/assets/routes/l2/counterclockwise-08-hallway-a.jpg",
+      "source_path_in_uploaded_zip": "L2/(ACW) A.jpg",
+      "covers_store_edges": [],
+      "binding_status": "sequence_ready_spatial_binding_pending",
+      "status": "ready_for_use"
+    },
+    {
+      "id": "asset_connector_a_b1_lenskart_reference",
+      "kind": "connector_reference_photo",
+      "floor_id": "b1",
+      "connector_group_id": "connector_a",
+      "web_path": "/assets/connectors/connector-a-b1-lenskart-reference.jpg",
+      "source": "user-supplied connector A image",
+      "status": "ready_for_use",
+      "note": "Reference view of the Connector A escalator area near Lenskart on B1."
+    }
+  ]
+}

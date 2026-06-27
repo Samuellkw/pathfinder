@@ -1,0 +1,80 @@
+{
+  "schema_version": "3.0.0",
+  "sequences": [
+    {
+      "floor_id": "b1",
+      "clockwise_asset_ids": [
+        "asset_b1_cw_hallway_a",
+        "asset_b1_cw_turn_a",
+        "asset_b1_cw_hallway_b",
+        "asset_b1_cw_turn_b",
+        "asset_b1_cw_hallway_c",
+        "asset_b1_cw_turn_c",
+        "asset_b1_cw_hallway_d",
+        "asset_b1_cw_turn_d"
+      ],
+      "counterclockwise_asset_ids": [
+        "asset_b1_acw_turn_d",
+        "asset_b1_acw_hallway_d",
+        "asset_b1_acw_turn_c",
+        "asset_b1_acw_hallway_c",
+        "asset_b1_acw_turn_b",
+        "asset_b1_acw_hallway_b",
+        "asset_b1_acw_turn_a",
+        "asset_b1_acw_hallway_a"
+      ],
+      "binding_status": "all_photos_loaded; exact store-to-photo boundaries pending",
+      "implementation_note": "Use these as a direction-specific visual walkthrough. Do not claim a given Hallway/Turn frame belongs to a precise store-to-store edge until the team assigns that boundary."
+    },
+    {
+      "floor_id": "l1",
+      "clockwise_asset_ids": [
+        "asset_l1_cw_hallway_a",
+        "asset_l1_cw_turn_a",
+        "asset_l1_cw_hallway_b",
+        "asset_l1_cw_turn_b",
+        "asset_l1_cw_hallway_c",
+        "asset_l1_cw_turn_c",
+        "asset_l1_cw_hallway_d",
+        "asset_l1_cw_turn_d"
+      ],
+      "counterclockwise_asset_ids": [
+        "asset_l1_acw_turn_d",
+        "asset_l1_acw_hallway_d",
+        "asset_l1_acw_turn_c",
+        "asset_l1_acw_hallway_c",
+        "asset_l1_acw_turn_b",
+        "asset_l1_acw_hallway_b",
+        "asset_l1_acw_turn_a",
+        "asset_l1_acw_hallway_a"
+      ],
+      "binding_status": "all_photos_loaded; exact store-to-photo boundaries pending",
+      "implementation_note": "Use these as a direction-specific visual walkthrough. Do not claim a given Hallway/Turn frame belongs to a precise store-to-store edge until the team assigns that boundary."
+    },
+    {
+      "floor_id": "l2",
+      "clockwise_asset_ids": [
+        "asset_l2_cw_hallway_a",
+        "asset_l2_cw_turn_a",
+        "asset_l2_cw_hallway_b",
+        "asset_l2_cw_turn_b",
+        "asset_l2_cw_hallway_c",
+        "asset_l2_cw_turn_c",
+        "asset_l2_cw_hallway_d",
+        "asset_l2_cw_turn_d"
+      ],
+      "counterclockwise_asset_ids": [
+        "asset_l2_acw_turn_d",
+        "asset_l2_acw_hallway_d",
+        "asset_l2_acw_turn_c",
+        "asset_l2_acw_hallway_c",
+        "asset_l2_acw_turn_b",
+        "asset_l2_acw_hallway_b",
+        "asset_l2_acw_turn_a",
+        "asset_l2_acw_hallway_a"
+      ],
+      "binding_status": "all_photos_loaded; exact store-to-photo boundaries pending",
+      "implementation_note": "Use these as a direction-specific visual walkthrough. Do not claim a given Hallway/Turn frame belongs to a precise store-to-store edge until the team assigns that boundary."
+    }
+  ]
+}

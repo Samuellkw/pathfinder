@@ -1,0 +1,41 @@
+{
+  "schema_version": "4.0.0",
+  "summary": {
+    "store_nodes": 38,
+    "same_floor_edges": 38,
+    "uploaded_place_captures": 76,
+    "unique_place_capture_assets_copied": 75,
+    "directional_route_assets": 48,
+    "floor_maps": 3,
+    "cross_floor_connectors_verified": 0,
+    "connector_groups_verified": 7,
+    "directed_vertical_paths_verified": 8,
+    "cross_floor_navigation_enabled": true,
+    "canonical_graph_nodes": 54,
+    "canonical_directed_edges": 102,
+    "all_store_nodes_mutually_reachable": true
+  },
+  "warnings": [
+    {
+      "severity": "warning",
+      "node_id": "b1_love-and-bravery",
+      "message": "One supplied Love & Bravery file is byte-identical to a KFC capture. It was excluded from the clean asset library, so Love & Bravery has one unique reference photo."
+    },
+    {
+      "severity": "info",
+      "message": "Setirom and Seorae have no unit number in the source list."
+    },
+    {
+      "severity": "info",
+      "message": "No capture-role assignment was guessed. Each store's available photos remain usable as vision/location references."
+    },
+    {
+      "severity": "info",
+      "message": "Exact Hallway/Turn-to-store boundaries remain intentionally blank; route media is fully sequenced but not yet edge-bound."
+    },
+    {
+      "severity": "info",
+      "message": "Cross-floor topology is now based on the team-provided Connector A–G descriptions. Walking times and exact map coordinates are still unmeasured, so shortest paths use logical navigation weights."
+    }
+  ]
+}

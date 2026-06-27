@@ -1,0 +1,16 @@
+{
+  "schema_version": "4.0.0",
+  "id": "plaza-singapura-b1-l2-pilot",
+  "name": "Plaza Singapura Landmark Navigator — B1 to L2 Pilot",
+  "navigation_model": "landmark-guided loop graph",
+  "supported_floors": [
+    "b1",
+    "l1",
+    "l2"
+  ],
+  "same_floor_navigation": "enabled",
+  "cross_floor_navigation": "enabled_via_verified_directional_escalators",
+  "asset_format": "web-ready JPEG for photos; PNG for floor-map references",
+  "connector_count": 7,
+  "connector_path_count": 8
+}

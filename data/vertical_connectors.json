@@ -1,0 +1,152 @@
+{
+  "schema_version": "4.0.0",
+  "cross_floor_routing_enabled": true,
+  "routing_note": "Escalators are modeled as directed edges. Connector A is a paired bidirectional arrangement represented by one up path and one down path; B–G are one-way paths as specified by the team.",
+  "connector_groups": [
+    {
+      "id": "connector_a",
+      "label": "Connector A",
+      "type": "paired_escalators",
+      "user_verified": true,
+      "reference_photo_asset_id": "asset_connector_a_b1_lenskart_reference",
+      "paths": [
+        {
+          "id": "connector_a_up",
+          "direction": "up",
+          "from_floor_id": "b1",
+          "to_floor_id": "l1",
+          "from_endpoint_node_id": "b1_connector_a_up_entry",
+          "to_endpoint_node_id": "l1_connector_a_up_exit",
+          "from_landmark": "Near Lenskart, B1 — use the left-side escalator when facing the Lenskart area.",
+          "to_landmark": "Level 1 exit nearest ALDO / Ray-Ban.",
+          "instruction": "Near Lenskart, take the left-side escalator up to Level 1. Exit near ALDO and Ray-Ban."
+        },
+        {
+          "id": "connector_a_down",
+          "direction": "down",
+          "from_floor_id": "l1",
+          "to_floor_id": "b1",
+          "from_endpoint_node_id": "l1_connector_a_down_entry",
+          "to_endpoint_node_id": "b1_connector_a_down_exit",
+          "from_landmark": "Level 1 entry nearest G2000.",
+          "to_landmark": "B1 exit near Lenskart.",
+          "instruction": "Near G2000, take the escalator down to B1. You will exit near Lenskart."
+        }
+      ]
+    },
+    {
+      "id": "connector_b",
+      "label": "Connector B",
+      "type": "escalator",
+      "user_verified": true,
+      "paths": [
+        {
+          "id": "connector_b_up",
+          "direction": "up",
+          "from_floor_id": "b1",
+          "to_floor_id": "l1",
+          "from_endpoint_node_id": "b1_connector_b_up_entry",
+          "to_endpoint_node_id": "l1_connector_b_up_exit",
+          "from_landmark": "Near DBS, B1.",
+          "to_landmark": "Level 1 exit near Goldheart.",
+          "instruction": "Near DBS, take the escalator up to Level 1. Exit near Goldheart."
+        }
+      ]
+    },
+    {
+      "id": "connector_c",
+      "label": "Connector C",
+      "type": "escalator",
+      "user_verified": true,
+      "paths": [
+        {
+          "id": "connector_c_down",
+          "direction": "down",
+          "from_floor_id": "l1",
+          "to_floor_id": "b1",
+          "from_endpoint_node_id": "l1_connector_c_down_entry",
+          "to_endpoint_node_id": "b1_connector_c_down_exit",
+          "from_landmark": "Near The Body Shop, Level 1.",
+          "to_landmark": "B1 exit near McDonald's / KFC.",
+          "instruction": "Near The Body Shop, take the escalator down to B1. Exit beside McDonald's and KFC."
+        }
+      ]
+    },
+    {
+      "id": "connector_d",
+      "label": "Connector D",
+      "type": "escalator",
+      "user_verified": true,
+      "paths": [
+        {
+          "id": "connector_d_up",
+          "direction": "up",
+          "from_floor_id": "l1",
+          "to_floor_id": "l2",
+          "from_endpoint_node_id": "l1_connector_d_up_entry",
+          "to_endpoint_node_id": "l2_connector_d_up_exit",
+          "from_landmark": "Near ALDO, Level 1.",
+          "to_landmark": "Level 2 exit near Charles & Keith.",
+          "instruction": "Near ALDO, take the escalator up to Level 2. Exit near Charles & Keith."
+        }
+      ]
+    },
+    {
+      "id": "connector_e",
+      "label": "Connector E",
+      "type": "escalator",
+      "user_verified": true,
+      "paths": [
+        {
+          "id": "connector_e_down",
+          "direction": "down",
+          "from_floor_id": "l2",
+          "to_floor_id": "l1",
+          "from_endpoint_node_id": "l2_connector_e_down_entry",
+          "to_endpoint_node_id": "l1_connector_e_down_exit",
+          "from_landmark": "Near ANTA, Level 2.",
+          "to_landmark": "Level 1 exit near G2000.",
+          "instruction": "Near ANTA, take the escalator down to Level 1. Exit near G2000."
+        }
+      ]
+    },
+    {
+      "id": "connector_f",
+      "label": "Connector F",
+      "type": "escalator",
+      "user_verified": true,
+      "paths": [
+        {
+          "id": "connector_f_up",
+          "direction": "up",
+          "from_floor_id": "l1",
+          "to_floor_id": "l2",
+          "from_endpoint_node_id": "l1_connector_f_up_entry",
+          "to_endpoint_node_id": "l2_connector_f_up_exit",
+          "from_landmark": "Near Goldheart, Level 1.",
+          "to_landmark": "Level 2 exit near ASICS.",
+          "instruction": "Near Goldheart, take the escalator up to Level 2. Exit near ASICS."
+        }
+      ]
+    },
+    {
+      "id": "connector_g",
+      "label": "Connector G",
+      "type": "escalator",
+      "user_verified": true,
+      "paths": [
+        {
+          "id": "connector_g_down",
+          "direction": "down",
+          "from_floor_id": "l2",
+          "to_floor_id": "l1",
+          "from_endpoint_node_id": "l2_connector_g_down_entry",
+          "to_endpoint_node_id": "l1_connector_g_down_exit",
+          "from_landmark": "Near TYPO, Level 2.",
+          "to_landmark": "Level 1 exit near The Body Shop.",
+          "instruction": "Near TYPO, take the escalator down to Level 1. Exit near The Body Shop."
+        }
+      ]
+    }
+  ]
+}

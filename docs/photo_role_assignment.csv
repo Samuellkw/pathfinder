@@ -1,0 +1,77 @@
+floor,node_id,store,asset_id,file_path,assign_role,keep_for_vision_reference,notes
+Basement 1,b1_tinsel-rack,Tinsel Rack,asset_b1_tinsel-rack_capture_1,/assets/places/b1/b1_tinsel-rack/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_tinsel-rack,Tinsel Rack,asset_b1_tinsel-rack_capture_2,/assets/places/b1/b1_tinsel-rack/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_istudio,iStudio,asset_b1_istudio_capture_1,/assets/places/b1/b1_istudio/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_istudio,iStudio,asset_b1_istudio_capture_2,/assets/places/b1/b1_istudio/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_taiwan-noodle-and-dumpling,Taiwan Noodle and Dumpling,asset_b1_taiwan-noodle-and-dumpling_capture_1,/assets/places/b1/b1_taiwan-noodle-and-dumpling/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_taiwan-noodle-and-dumpling,Taiwan Noodle and Dumpling,asset_b1_taiwan-noodle-and-dumpling_capture_2,/assets/places/b1/b1_taiwan-noodle-and-dumpling/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_burger-king,Burger King,asset_b1_burger-king_capture_1,/assets/places/b1/b1_burger-king/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_burger-king,Burger King,asset_b1_burger-king_capture_2,/assets/places/b1/b1_burger-king/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_lenskart,Lenskart,asset_b1_lenskart_capture_1,/assets/places/b1/b1_lenskart/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_lenskart,Lenskart,asset_b1_lenskart_capture_2,/assets/places/b1/b1_lenskart/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_art-friend,Art Friend,asset_b1_art-friend_capture_1,/assets/places/b1/b1_art-friend/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_art-friend,Art Friend,asset_b1_art-friend_capture_2,/assets/places/b1/b1_art-friend/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_supergurl,Supergurl,asset_b1_supergurl_capture_1,/assets/places/b1/b1_supergurl/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_supergurl,Supergurl,asset_b1_supergurl_capture_2,/assets/places/b1/b1_supergurl/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_dmk,DMK,asset_b1_dmk_capture_1,/assets/places/b1/b1_dmk/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_dmk,DMK,asset_b1_dmk_capture_2,/assets/places/b1/b1_dmk/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_neonmello,Neonmello,asset_b1_neonmello_capture_1,/assets/places/b1/b1_neonmello/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_neonmello,Neonmello,asset_b1_neonmello_capture_2,/assets/places/b1/b1_neonmello/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_fash-mob,Fash Mob,asset_b1_fash-mob_capture_1,/assets/places/b1/b1_fash-mob/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_fash-mob,Fash Mob,asset_b1_fash-mob_capture_2,/assets/places/b1/b1_fash-mob/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_love-and-bravery,Love & Bravery,asset_b1_love-and-bravery_capture_1,/assets/places/b1/b1_love-and-bravery/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_love-and-bravery,Love & Bravery,asset_b1_love-and-bravery_capture_2,/assets/places/b1/b1_love-and-bravery/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_kfc,KFC,asset_b1_kfc_capture_1,,,no,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_kfc,KFC,asset_b1_kfc_capture_2,/assets/places/b1/b1_kfc/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_mcdonalds,McDonald's,asset_b1_mcdonalds_capture_1,/assets/places/b1/b1_mcdonalds/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_mcdonalds,McDonald's,asset_b1_mcdonalds_capture_2,/assets/places/b1/b1_mcdonalds/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_dbs,DBS,asset_b1_dbs_capture_1,/assets/places/b1/b1_dbs/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_dbs,DBS,asset_b1_dbs_capture_2,/assets/places/b1/b1_dbs/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_smiggle,Smiggle,asset_b1_smiggle_capture_1,/assets/places/b1/b1_smiggle/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Basement 1,b1_smiggle,Smiggle,asset_b1_smiggle_capture_2,/assets/places/b1/b1_smiggle/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_pedro,Pedro,asset_l1_pedro_capture_1,/assets/places/l1/l1_pedro/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_pedro,Pedro,asset_l1_pedro_capture_2,/assets/places/l1/l1_pedro/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_levis,Levi's,asset_l1_levis_capture_1,/assets/places/l1/l1_levis/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_levis,Levi's,asset_l1_levis_capture_2,/assets/places/l1/l1_levis/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_determinant,Determinant,asset_l1_determinant_capture_1,/assets/places/l1/l1_determinant/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_determinant,Determinant,asset_l1_determinant_capture_2,/assets/places/l1/l1_determinant/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_g2000,G2000,asset_l1_g2000_capture_1,/assets/places/l1/l1_g2000/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_g2000,G2000,asset_l1_g2000_capture_2,/assets/places/l1/l1_g2000/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_ecco,ECCO,asset_l1_ecco_capture_1,/assets/places/l1/l1_ecco/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_ecco,ECCO,asset_l1_ecco_capture_2,/assets/places/l1/l1_ecco/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_benjamin-barker,Benjamin Barker,asset_l1_benjamin-barker_capture_1,/assets/places/l1/l1_benjamin-barker/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_benjamin-barker,Benjamin Barker,asset_l1_benjamin-barker_capture_2,/assets/places/l1/l1_benjamin-barker/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_muji,MUJI,asset_l1_muji_capture_1,/assets/places/l1/l1_muji/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_muji,MUJI,asset_l1_muji_capture_2,/assets/places/l1/l1_muji/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_tiong-bahru-bakery,Tiong Bahru Bakery,asset_l1_tiong-bahru-bakery_capture_1,/assets/places/l1/l1_tiong-bahru-bakery/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_tiong-bahru-bakery,Tiong Bahru Bakery,asset_l1_tiong-bahru-bakery_capture_2,/assets/places/l1/l1_tiong-bahru-bakery/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_aldo,ALDO,asset_l1_aldo_capture_1,/assets/places/l1/l1_aldo/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_aldo,ALDO,asset_l1_aldo_capture_2,/assets/places/l1/l1_aldo/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_ray-ban,Ray-Ban,asset_l1_ray-ban_capture_1,/assets/places/l1/l1_ray-ban/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_ray-ban,Ray-Ban,asset_l1_ray-ban_capture_2,/assets/places/l1/l1_ray-ban/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_goldheart,Goldheart,asset_l1_goldheart_capture_1,/assets/places/l1/l1_goldheart/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_goldheart,Goldheart,asset_l1_goldheart_capture_2,/assets/places/l1/l1_goldheart/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_five-guys,Five Guys,asset_l1_five-guys_capture_1,/assets/places/l1/l1_five-guys/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_five-guys,Five Guys,asset_l1_five-guys_capture_2,/assets/places/l1/l1_five-guys/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_the-body-shop,The Body Shop,asset_l1_the-body-shop_capture_1,/assets/places/l1/l1_the-body-shop/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 1,l1_the-body-shop,The Body Shop,asset_l1_the-body-shop_capture_2,/assets/places/l1/l1_the-body-shop/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_asics,ASICS,asset_l2_asics_capture_1,/assets/places/l2/l2_asics/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_asics,ASICS,asset_l2_asics_capture_2,/assets/places/l2/l2_asics/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_setirom,Setirom,asset_l2_setirom_capture_1,/assets/places/l2/l2_setirom/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_setirom,Setirom,asset_l2_setirom_capture_2,/assets/places/l2/l2_setirom/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_anta,ANTA,asset_l2_anta_capture_1,/assets/places/l2/l2_anta/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_anta,ANTA,asset_l2_anta_capture_2,/assets/places/l2/l2_anta/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_uniqlo,UNIQLO,asset_l2_uniqlo_capture_1,/assets/places/l2/l2_uniqlo/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_uniqlo,UNIQLO,asset_l2_uniqlo_capture_2,/assets/places/l2/l2_uniqlo/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_meilleur-moment,Meilleur Moment,asset_l2_meilleur-moment_capture_1,/assets/places/l2/l2_meilleur-moment/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_meilleur-moment,Meilleur Moment,asset_l2_meilleur-moment_capture_2,/assets/places/l2/l2_meilleur-moment/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_charles-and-keith,Charles & Keith,asset_l2_charles-and-keith_capture_1,/assets/places/l2/l2_charles-and-keith/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_charles-and-keith,Charles & Keith,asset_l2_charles-and-keith_capture_2,/assets/places/l2/l2_charles-and-keith/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_spectacle-hut,Spectacle Hut,asset_l2_spectacle-hut_capture_1,/assets/places/l2/l2_spectacle-hut/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_spectacle-hut,Spectacle Hut,asset_l2_spectacle-hut_capture_2,/assets/places/l2/l2_spectacle-hut/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_typo,TYPO,asset_l2_typo_capture_1,/assets/places/l2/l2_typo/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_typo,TYPO,asset_l2_typo_capture_2,/assets/places/l2/l2_typo/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_din-tai-fung,Din Tai Fung,asset_l2_din-tai-fung_capture_1,/assets/places/l2/l2_din-tai-fung/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_din-tai-fung,Din Tai Fung,asset_l2_din-tai-fung_capture_2,/assets/places/l2/l2_din-tai-fung/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_seorae,Seorae,asset_l2_seorae_capture_1,/assets/places/l2/l2_seorae/capture-01.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.
+Level 2,l2_seorae,Seorae,asset_l2_seorae_capture_2,/assets/places/l2/l2_seorae/capture-02.jpg,,yes,Choose role after visual review. Both roles are intentionally unassigned in data.

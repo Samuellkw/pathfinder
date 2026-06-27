@@ -1,0 +1,84 @@
+{
+  "schema_version": "4.0.0",
+  "purpose": "Regression tests for the graph. Use these after future edits to ensure cross-floor routing remains valid.",
+  "test_routes": [
+    {
+      "label": "B1 Lenskart → L2 Charles & Keith",
+      "start_node_id": "b1_lenskart",
+      "end_node_id": "l2_charles-and-keith",
+      "reachable": true,
+      "routing_weight": 2.2,
+      "edge_ids": [
+        "access_b1_lenskart_to_connector_a_up",
+        "vertical_connector_a_up",
+        "access_connector_a_up_to_l1_aldo",
+        "access_l1_aldo_to_connector_d_up",
+        "vertical_connector_d_up",
+        "access_connector_d_up_to_l2_charles"
+      ]
+    },
+    {
+      "label": "B1 DBS → L2 ASICS",
+      "start_node_id": "b1_dbs",
+      "end_node_id": "l2_asics",
+      "reachable": true,
+      "routing_weight": 2.2,
+      "edge_ids": [
+        "access_b1_dbs_to_connector_b_up",
+        "vertical_connector_b_up",
+        "access_connector_b_up_to_l1_goldheart",
+        "access_l1_goldheart_to_connector_f_up",
+        "vertical_connector_f_up",
+        "access_connector_f_up_to_l2_asics"
+      ]
+    },
+    {
+      "label": "L2 TYPO → B1 McDonald's",
+      "start_node_id": "l2_typo",
+      "end_node_id": "b1_mcdonalds",
+      "reachable": true,
+      "routing_weight": 2.2,
+      "edge_ids": [
+        "access_l2_typo_to_connector_g_down",
+        "vertical_connector_g_down",
+        "access_connector_g_down_to_l1_bodyshop",
+        "access_l1_bodyshop_to_connector_c_down",
+        "vertical_connector_c_down",
+        "access_connector_c_down_to_b1_mcdonalds"
+      ]
+    },
+    {
+      "label": "L2 ANTA → B1 KFC",
+      "start_node_id": "l2_anta",
+      "end_node_id": "b1_kfc",
+      "reachable": true,
+      "routing_weight": 6.2,
+      "edge_ids": [
+        "access_l2_anta_to_connector_e_down",
+        "vertical_connector_e_down",
+        "access_connector_e_down_to_l1_g2000",
+        "edge_l1_03_counterclockwise",
+        "edge_l1_02_counterclockwise",
+        "edge_l1_01_counterclockwise",
+        "edge_l1_13_counterclockwise",
+        "access_l1_bodyshop_to_connector_c_down",
+        "vertical_connector_c_down",
+        "access_connector_c_down_to_b1_kfc"
+      ]
+    },
+    {
+      "label": "L1 The Body Shop → L2 ASICS",
+      "start_node_id": "l1_the-body-shop",
+      "end_node_id": "l2_asics",
+      "reachable": true,
+      "routing_weight": 3.1,
+      "edge_ids": [
+        "edge_l1_12_counterclockwise",
+        "edge_l1_11_counterclockwise",
+        "access_l1_goldheart_to_connector_f_up",
+        "vertical_connector_f_up",
+        "access_connector_f_up_to_l2_asics"
+      ]
+    }
+  ]
+}
