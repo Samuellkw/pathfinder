@@ -1,0 +1,451 @@
+diff --git a/.env.example b/.env.example
+index 04acdb5..72e871f 100644
+--- a/.env.example
++++ b/.env.example
+@@ -2,3 +2,5 @@
+ OPENAI_API_KEY=your_openai_api_key_here
+ # Optional. Defaults to gpt-5.5 in this project.
+ OPENAI_MODEL=gpt-5.5
++# Optional. Enables live, official Plaza Sing promotions/events in the concierge.
++EXA_API_KEY=your_exa_api_key_here
+diff --git a/README.md b/README.md
+index 42c11b5..4fa1085 100644
+--- a/README.md
++++ b/README.md
+@@ -14,3 +14,7 @@ The vision panel sends an uploaded storefront/corridor image to a server-side Op
+ ## Concierge
+ 
+ The concierge extracts the user's time, budget and interests with OpenAI, then chooses stops from `data/store_profiles.json`. Route legs are still generated locally from the directed graph, so the model cannot make up indoor directions. See `docs/EXA_NEXT_STEP.md` for the safe next step for optional fresh promotions/events.
++
++## Exa live mall context
++
++The concierge optionally uses Exa to search official Plaza Singapura/CapitaLand pages for current promotions, events and tenant updates. It never replaces the local directed graph for routing. Add `EXA_API_KEY` to `.env.local`; see `docs/EXA_INTEGRATION.md`.
+diff --git a/app/api/concierge/route.ts b/app/api/concierge/route.ts
+index 5ae6bc6..2ce7c02 100644
+--- a/app/api/concierge/route.ts
++++ b/app/api/concierge/route.ts
+@@ -1,5 +1,6 @@
+ import { NextResponse } from "next/server";
+ import { buildConciergePlan, ConciergeConstraints } from "@/lib/concierge";
++import { emptyLiveContext, getLiveMallContext } from "@/lib/exa-live-context";
+ import { createStructuredResponse } from "@/lib/openai-server";
+ 
+ export const runtime = "nodejs";
+@@ -32,10 +33,14 @@ const conciergeSchema = {
+ };
+ 
+ type ConciergeIntent = ConciergeConstraints & { reply: string };
++type ConciergeRequest = {
++  message?: string;
++  includeLiveContext?: boolean;
++};
+ 
+ export async function POST(request: Request) {
+   try {
+-    const body = (await request.json()) as { message?: string };
++    const body = (await request.json()) as ConciergeRequest;
+     const message = body.message?.trim();
+ 
+     if (!message || message.length > 900) {
+@@ -61,16 +66,19 @@ export async function POST(request: Request) {
+     });
+ 
+     const itinerary = buildConciergePlan(intent);
++    const liveContext = body.includeLiveContext === false
++      ? emptyLiveContext("Live official promotions and events were not requested for this plan.")
++      : await getLiveMallContext({
++          request: message,
++          stopNames: itinerary.stops.map((stop) => stop.name)
++        });
+ 
+     return NextResponse.json({
+       status: "ready",
+       message: intent.reply || "Here is a route-aware plan using the mapped pilot stores.",
+       constraints: intent,
+       itinerary,
+-      liveContext: {
+-        enabled: false,
+-        message: "Optional Exa live-search context can be added after Exa Dashboard Onboarding."
+-      }
++      liveContext
+     });
+   } catch (error) {
+     const message = error instanceof Error ? error.message : "Unable to build that plan.";
+diff --git a/app/globals.css b/app/globals.css
+index 53ca795..240af4f 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -517,3 +517,69 @@ h1 {
+   font-size: 0.82rem;
+   line-height: 1.4;
+ }
++
++.checkbox-field {
++  display: flex;
++  align-items: flex-start;
++  gap: 10px;
++  color: var(--text);
++  font-size: 0.9rem;
++  line-height: 1.4;
++  cursor: pointer;
++}
++
++.checkbox-field input {
++  width: 18px;
++  height: 18px;
++  margin: 1px 0 0;
++  accent-color: var(--accent);
++}
++
++.live-context {
++  margin: 14px 16px 0;
++  border-top: 1px solid var(--line);
++  padding-top: 12px;
++}
++
++.live-context-note {
++  margin: 0;
++}
++
++.live-context-list {
++  display: grid;
++  gap: 8px;
++  margin: 12px 0 0;
++  padding: 0;
++  list-style: none;
++}
++
++.live-context-list li {
++  border: 1px solid var(--line);
++  border-radius: 8px;
++  padding: 11px;
++  background: var(--surface-strong);
++}
++
++.live-context-list a {
++  display: grid;
++  gap: 3px;
++  color: var(--accent-dark);
++  text-decoration: none;
++}
++
++.live-context-list a:hover {
++  text-decoration: underline;
++}
++
++.live-context-list a span {
++  color: var(--muted);
++  font-size: 0.78rem;
++  font-weight: 700;
++}
++
++.live-context-list p {
++  margin: 8px 0 0;
++  color: var(--muted);
++  font-size: 0.88rem;
++  line-height: 1.45;
++}
+diff --git a/components/ConciergePanel.tsx b/components/ConciergePanel.tsx
+index ec1d029..5fcc204 100644
+--- a/components/ConciergePanel.tsx
++++ b/components/ConciergePanel.tsx
+@@ -12,6 +12,17 @@ type Stop = {
+   reason: string;
+ };
+ 
++type LiveContext = {
++  status: "ready" | "empty" | "unavailable" | "skipped";
++  message: string;
++  items: Array<{
++    title: string;
++    summary: string;
++    url: string;
++    source: string;
++  }>;
++};
++
+ type ConciergeResponse =
+   | {
+       status: "ready";
+@@ -23,12 +34,13 @@ type ConciergeResponse =
+         fits_duration: boolean;
+         fits_budget: boolean;
+       };
+-      liveContext: { enabled: boolean; message: string };
++      liveContext: LiveContext;
+     }
+   | { status: "error"; message: string };
+ 
+ export function ConciergePanel() {
+   const [message, setMessage] = useState("");
++  const [includeLiveContext, setIncludeLiveContext] = useState(true);
+   const [response, setResponse] = useState<ConciergeResponse | null>(null);
+   const [isLoading, setIsLoading] = useState(false);
+ 
+@@ -43,7 +55,7 @@ export function ConciergePanel() {
+       const apiResponse = await fetch("/api/concierge", {
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+-        body: JSON.stringify({ message })
++        body: JSON.stringify({ message, includeLiveContext })
+       });
+       setResponse((await apiResponse.json()) as ConciergeResponse);
+     } catch {
+@@ -57,7 +69,7 @@ export function ConciergePanel() {
+     <section className="ai-panel" aria-labelledby="concierge-title">
+       <div className="panel-heading">
+         <div>
+-          <p className="eyebrow">OpenAI concierge</p>
++          <p className="eyebrow">OpenAI + Exa concierge</p>
+           <h2 id="concierge-title">Plan a Plaza Sing outing</h2>
+         </div>
+         <span>Plan</span>
+@@ -74,6 +86,17 @@ export function ConciergePanel() {
+             placeholder="I’m going to Plaza Sing with my girlfriend. We have 3 hours and $100 for dinner, dessert and casual shopping."
+           />
+         </label>
++
++        <label className="checkbox-field" htmlFor="include-live-context">
++          <input
++            id="include-live-context"
++            type="checkbox"
++            checked={includeLiveContext}
++            onChange={(event) => setIncludeLiveContext(event.target.checked)}
++          />
++          <span>Include current official promotions and events with Exa</span>
++        </label>
++
+         <button className="primary-button" type="submit" disabled={isLoading}>
+           {isLoading ? "Planning…" : "Build my plan"}
+         </button>
+@@ -102,7 +125,28 @@ export function ConciergePanel() {
+               </li>
+             ))}
+           </ol>
+-          <p className="live-context-note">{response.liveContext.message}</p>
++
++          <section className="live-context" aria-label="Exa live mall context">
++            <p className="live-context-note">
++              <strong>Exa live context</strong>
++              <br />
++              {response.liveContext.message}
++            </p>
++
++            {response.liveContext.items.length > 0 ? (
++              <ul className="live-context-list">
++                {response.liveContext.items.map((item) => (
++                  <li key={item.url}>
++                    <a href={item.url} target="_blank" rel="noreferrer">
++                      <strong>{item.title}</strong>
++                      <span>{item.source}</span>
++                    </a>
++                    <p>{item.summary}</p>
++                  </li>
++                ))}
++              </ul>
++            ) : null}
++          </section>
+         </div>
+       ) : null}
+     </section>
+diff --git a/docs/EXA_INTEGRATION.md b/docs/EXA_INTEGRATION.md
+new file mode 100644
+index 0000000..99413fa
+--- /dev/null
++++ b/docs/EXA_INTEGRATION.md
+@@ -0,0 +1,28 @@
++# Exa live mall context
++
++The concierge can now ask Exa for current, official web context after it builds a deterministic local itinerary.
++
++## Setup
++
++Add this to `.env.local`:
++
++```env
++EXA_API_KEY=your_exa_api_key_here
++```
++
++Restart `npm run dev` after changing environment variables.
++
++## What Exa does
++
++- Searches only `plazasing.com` and `capitaland.com`.
++- Looks for current official promotions, events and tenant updates relevant to the user's plan.
++- Returns source links and concise excerpts in the concierge result.
++- Uses a 10-minute server-side cache to avoid repeatedly spending requests on the same plan.
++
++## What Exa does not do
++
++- It does not calculate indoor directions.
++- It does not decide whether an unmapped web result becomes a route stop.
++- It does not claim that an offer is still valid; the interface tells the user to check the official source.
++
++The deterministic local graph remains the navigation source of truth.
+diff --git a/lib/exa-live-context.ts b/lib/exa-live-context.ts
+new file mode 100644
+index 0000000..bad90ca
+--- /dev/null
++++ b/lib/exa-live-context.ts
+@@ -0,0 +1,161 @@
++export type LiveContextItem = {
++  title: string;
++  summary: string;
++  url: string;
++  source: string;
++};
++
++export type LiveMallContext = {
++  status: "ready" | "empty" | "unavailable" | "skipped";
++  message: string;
++  items: LiveContextItem[];
++};
++
++type ExaSearchResult = {
++  title?: string;
++  url?: string;
++  highlights?: string[];
++};
++
++type ExaSearchResponse = {
++  results?: ExaSearchResult[];
++  error?: string;
++};
++
++const EXA_SEARCH_URL = "https://api.exa.ai/search";
++const OFFICIAL_DOMAINS = ["plazasing.com", "capitaland.com"];
++const CACHE_TTL_MS = 10 * 60 * 1000;
++
++const liveContextCache = new Map<string, { expiresAt: number; value: LiveMallContext }>();
++
++export function emptyLiveContext(message: string): LiveMallContext {
++  return {
++    status: "skipped",
++    message,
++    items: []
++  };
++}
++
++function isOfficialSource(url: string) {
++  try {
++    const host = new URL(url).hostname.toLowerCase();
++    return OFFICIAL_DOMAINS.some(
++      (domain) => host === domain || host.endsWith(`.${domain}`)
++    );
++  } catch {
++    return false;
++  }
++}
++
++function sourceLabel(url: string) {
++  try {
++    return new URL(url).hostname.replace(/^www\./, "");
++  } catch {
++    return "Official mall source";
++  }
++}
++
++function compactText(value: string) {
++  return value.replace(/\s+/g, " ").trim().slice(0, 320);
++}
++
++function buildQuery(request: string, stopNames: string[]) {
++  const cleanRequest = compactText(request).slice(0, 450);
++  const stops = stopNames.length > 0 ? `Mapped itinerary stops: ${stopNames.join(", ")}.` : "";
++
++  return [
++    "Current Plaza Singapura Singapore official promotions, events, tenant updates, and mall activities.",
++    stops,
++    cleanRequest ? `Visitor request: ${cleanRequest}` : "",
++    "Use official Plaza Singapura or CapitaLand pages only."
++  ]
++    .filter(Boolean)
++    .join(" ");
++}
++
++export async function getLiveMallContext(input: {
++  request: string;
++  stopNames: string[];
++}): Promise<LiveMallContext> {
++  const apiKey = process.env.EXA_API_KEY;
++
++  if (!apiKey) {
++    return {
++      status: "unavailable",
++      message: "Live official promotions and events are unavailable until EXA_API_KEY is configured.",
++      items: []
++    };
++  }
++
++  const query = buildQuery(input.request, input.stopNames);
++  const cacheKey = query.toLowerCase();
++  const cached = liveContextCache.get(cacheKey);
++
++  if (cached && cached.expiresAt > Date.now()) {
++    return cached.value;
++  }
++
++  try {
++    const response = await fetch(EXA_SEARCH_URL, {
++      method: "POST",
++      headers: {
++        "Content-Type": "application/json",
++        "x-api-key": apiKey
++      },
++      body: JSON.stringify({
++        query,
++        type: "auto",
++        numResults: 5,
++        includeDomains: OFFICIAL_DOMAINS,
++        contents: {
++          highlights: true
++        }
++      }),
++      cache: "no-store"
++    });
++
++    if (!response.ok) {
++      throw new Error(`Exa request failed with status ${response.status}.`);
++    }
++
++    const payload = (await response.json()) as ExaSearchResponse;
++    const items = (payload.results ?? [])
++      .filter((result): result is ExaSearchResult & { title: string; url: string } =>
++        Boolean(result.title && result.url && isOfficialSource(result.url))
++      )
++      .map((result) => ({
++        title: compactText(result.title),
++        summary: compactText(result.highlights?.[0] ?? "Open the official source for details."),
++        url: result.url,
++        source: sourceLabel(result.url)
++      }))
++      .slice(0, 3);
++
++    const value: LiveMallContext = items.length > 0
++      ? {
++          status: "ready",
++          message:
++            "Live official web context from Exa. Check the source before relying on an offer or event.",
++          items
++        }
++      : {
++          status: "empty",
++          message: "Exa found no matching official live context for this plan right now.",
++          items: []
++        };
++
++    liveContextCache.set(cacheKey, {
++      expiresAt: Date.now() + CACHE_TTL_MS,
++      value
++    });
++
++    return value;
++  } catch (error) {
++    console.error("Exa live context failed:", error);
++    return {
++      status: "unavailable",
++      message: "Live official context is temporarily unavailable. Your local route plan still works.",
++      items: []
++    };
++  }
++}

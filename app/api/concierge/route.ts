@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildConciergePlan, ConciergeConstraints } from "@/lib/concierge";
+import { emptyLiveContext, getLiveMallContext } from "@/lib/exa-live-context";
 import { createStructuredResponse } from "@/lib/openai-server";
 
 export const runtime = "nodejs";
@@ -32,10 +33,14 @@ const conciergeSchema = {
 };
 
 type ConciergeIntent = ConciergeConstraints & { reply: string };
+type ConciergeRequest = {
+  message?: string;
+  includeLiveContext?: boolean;
+};
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { message?: string };
+    const body = (await request.json()) as ConciergeRequest;
     const message = body.message?.trim();
 
     if (!message || message.length > 900) {
@@ -61,16 +66,19 @@ export async function POST(request: Request) {
     });
 
     const itinerary = buildConciergePlan(intent);
+    const liveContext = body.includeLiveContext === false
+      ? emptyLiveContext("Live official promotions and events were not requested for this plan.")
+      : await getLiveMallContext({
+          request: message,
+          stopNames: itinerary.stops.map((stop) => stop.name)
+        });
 
     return NextResponse.json({
       status: "ready",
       message: intent.reply || "Here is a route-aware plan using the mapped pilot stores.",
       constraints: intent,
       itinerary,
-      liveContext: {
-        enabled: false,
-        message: "Optional Exa live-search context can be added after Exa Dashboard Onboarding."
-      }
+      liveContext
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unable to build that plan.";
